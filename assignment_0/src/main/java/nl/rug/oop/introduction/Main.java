@@ -24,6 +24,7 @@ public class Main {
         return animals;
     }
 
+    /* Main method*/
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Animal[] animals;
