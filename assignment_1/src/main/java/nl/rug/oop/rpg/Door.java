@@ -1,15 +1,21 @@
 package nl.rug.oop.rpg;
-/*
-**Models a door with a description
-*/
-public class Door implements Inspectable {
+/**
+ * A door class
+ */
+public class Door implements Inspectable, Interactable {
 	private String description;
-	public Door(String description) {
+	private int roomBehind;
+
+	public Door(String description, int roomBehind) {
 		this.description = description;
+		this.roomBehind = roomBehind;
 	}
 
-	public void inspect(){
+	public void inspect() {
 		System.out.println(description);
 	}
-	
+
+	public void interact(Player player) {
+		player.changeLocation(roomBehind);
+	}
 }
