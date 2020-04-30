@@ -8,18 +8,19 @@ public class Enemy extends NPC implements Attackable{
     /**
      * Constructor
      *
-     * @param description Short describtion of the enemy
+     * @param name Name of the Paladin
+     * @param description Short description of the enemy
      * @param health Initial HitPoints of the enemy
      * @param attackDamage Damage the enemy deals
      */
 
-    public Enemy(String description, int health, int attackDamage) {
-        super(description, health);
+    public Enemy(String name, String description, int health, int attackDamage) {
+        super(name, description, health);
         this.attackDamage = attackDamage;
     }
 
     /**
-     * Method allowing the player to attack enemies, subtracting hit points
+     * Method allowing the enemy NPC attack the player, subtracting hit points
      *
      * @param player the name of the attacked player
      */

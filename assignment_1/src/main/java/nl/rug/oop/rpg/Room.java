@@ -18,10 +18,6 @@ public class Room implements Inspectable {
 		System.out.println(description);
 	}
 
-	public Door doorID(int ID){
-		return doors.get(ID);
-	}
-
 	public void addDoor(Door door) {
 		doors.add(door);
 	}
@@ -47,4 +43,9 @@ public class Room implements Inspectable {
 			step++;
 		}
 	}
+
+	public void dooor(int doorNR, Player player) {
+		doors.get(doorNR).interact(player);
+	}
+
 }

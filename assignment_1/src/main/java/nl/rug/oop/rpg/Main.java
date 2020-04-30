@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
     	Game game = new Game();
-    	Player player = new Player("captain awesome",10);
+    	Player player = new Player("captain awesome",10,3);
     	game.addPlayer(player);
     	Room room0 = new Room("A rather dusty room full with computers and two doors");
     	game.addRoom(room0);

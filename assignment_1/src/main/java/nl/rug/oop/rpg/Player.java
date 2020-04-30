@@ -2,7 +2,7 @@ package nl.rug.oop.rpg;
 /**
  * A player class
  */
-public class Player {
+public class Player implements Attackable {
 	private String name;
 	private int location;
 	protected int health;
@@ -41,6 +41,11 @@ public class Player {
 
 	public void changeLocation(int location){
 		this.location = location;
+	}
+
+	public void damage() {
+		System.out.println("You are being wounded");
+		health--;
 	}
 	
 }

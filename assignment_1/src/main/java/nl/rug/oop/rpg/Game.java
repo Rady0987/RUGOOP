@@ -33,10 +33,7 @@ public class Game {
 
 	public void playGame() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("What do you want to do?");
-    	System.out.println("(0) Look around");
-    	System.out.println("(1) Look for a way out");
-		System.out.println("(2) Look for company");
+		defaultMenu();
     	while(scanner.hasNextInt()) {
 			int num = scanner.nextInt();
 			if(num == 0){
@@ -46,21 +43,29 @@ public class Game {
 				lookForWayOut();
 				int doorID = scanner.nextInt();
 				if(doorID == -1) {
-					System.out.println("You are in the same room");
+					System.out.println("You are in room " +  player.location());
 				} else {
-					//doors.get(DoorID);
-					//Door.interact(player);
+					changeRooms(doorID);
 				}
 			}
 			if(num == 2) {
 				lookForCompany();
+				int interactID = scanner.nextInt();
+				if(interactID == -1) {
+					System.out.println("You haven't interacted with anybody.");
+				} else {
+					System.out.println("The creature is asleep so you can’t interact with it.");
+				}
 			}
-			System.out.println("What do you want to do?");
-    		System.out.println("(0) Look around");
-    		System.out.println("(1) Look for a way out");
-			System.out.println("(2) Look for company");
+		defaultMenu();
 
 		}
+	}
+	public void defaultMenu() {
+		System.out.println("What do you want to do?");
+		System.out.println("(0) Look around");
+		System.out.println("(1) Look for a way out");
+		System.out.println("(2) Look for company");
 	}
 
 	public void lookAround() {
@@ -74,8 +79,22 @@ public class Game {
 		System.out.println("Which door do you take? (-1 : stay here)");
 	}
 
+	public void changeRooms(int doorID){
+		rooms.get(player.location()).dooor(doorID, player);
+		System.out.println("You are in room " +  player.location());
+	}
+
 	public void lookForCompany() {
 		System.out.println("You look if there’s someone here. \n" + "You see: ");
 		rooms.get(player.location()).inspectNPCs();
+		System.out.println("Interact ? (-1 : do nothing)");
+	}
+
+	public void interact() {
+		Scanner scanner = new Scanner(System.in);
+		int selectedNPC = scanner.nextInt();
+
+
+
 	}
 }
