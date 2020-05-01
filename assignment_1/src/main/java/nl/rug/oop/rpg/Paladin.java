@@ -19,7 +19,7 @@ public class Paladin extends NPC {
      */
 
     public void heal (Player player) {
-        player.health =+ 2;
+        player.health =+ 5;
         System.out.println(name + "healed you, now you have " + player.health + " hitpoints");
     }
 }

@@ -19,9 +19,17 @@ abstract class NPC implements Inspectable, Interactable, Attackable {
         this.health = health;
     }
 
+    /**
+     * Method that prints the name of the NPC, when inspected.
+     */
+
     public void inspect() {
         System.out.println(name);
     }
+
+    /**
+     * Method that subtracts hitpoints in case the NPC is attacked.
+     */
 
     public void damage() {
         System.out.println(description + "is being wounded");
@@ -30,6 +38,10 @@ abstract class NPC implements Inspectable, Interactable, Attackable {
             System.out.println(description + "died!");
         }
     }
+
+    /**
+     * Method that prints the description of the NPC.
+     */
 
     public void interact(Player player) {
         System.out.println(description);

@@ -8,6 +8,12 @@ public class Room implements Inspectable {
 	private ArrayList<Door> doors;
 	private ArrayList<NPC> NPCs;
 
+	/**
+	 * Constructor, also contains the lists with doors and NPCs
+	 *
+	 * @param description Short description of the room
+	 */
+
 	public Room(String description) {
 		this.description = description;
 		doors = new ArrayList<>();
@@ -44,7 +50,7 @@ public class Room implements Inspectable {
 		}
 	}
 
-	public void dooor(int doorNR, Player player) {
+	public void doorInteract(int doorNR, Player player) {
 		doors.get(doorNR).interact(player);
 	}
 

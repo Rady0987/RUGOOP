@@ -7,7 +7,7 @@ public class Craftsman extends NPC {
     private ArrayList<Item> items;
     /**
      * Constructor
-     *  @param name        Name of the NPC
+     * @param name        Name of the NPC
      * @param description Short description of the NPC
      * @param health      Initial HitPoints of the NPC
      */
@@ -16,5 +16,8 @@ public class Craftsman extends NPC {
         items = new ArrayList<>();
     }
 
+    public void addItem(Item item) {
+        items.add(item);
+    }
 
 }

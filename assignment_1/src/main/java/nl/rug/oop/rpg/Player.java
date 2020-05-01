@@ -6,7 +6,7 @@ public class Player implements Attackable {
 	private String name;
 	private int location;
 	protected int health;
-	private int attackDamage;
+	protected int attackDamage;
 	private static int DEFAULT_LOCATION = 0;
 
 	/**
@@ -24,12 +24,16 @@ public class Player implements Attackable {
 		this.attackDamage = attackDamage;
 	}
 
+	/**
+	 * Method that returns the current location of the player.
+	 */
+
 	public int location() {
 		return location;
 	}
 
 	/**
-	 * Method allowing the player to attack enemies, subtracting hitpoints
+	 * Method allowing the player to attack enemies, subtracting hitpoints.
 	 *
 	 * @param enemy the name of the attacked enemy
 	 */
@@ -39,9 +43,17 @@ public class Player implements Attackable {
 		enemy.health =- attackDamage;
 	}
 
+	/**
+	 * Method that modifies the current location of the player.
+	 */
+
 	public void changeLocation(int location){
 		this.location = location;
 	}
+
+	/**
+	 * Method that subtracts hitpoints in case the player is attacked.
+	 */
 
 	public void damage() {
 		System.out.println("You are being wounded");
