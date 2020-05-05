@@ -2,10 +2,10 @@ package nl.rug.oop.rpg;
 /**
  * A player class
  */
-public class Player implements Attackable {
+public class Player {
 	private String name;
 	private int location;
-	protected int health;
+	private int health;
 	protected int attackDamage;
 	private static int DEFAULT_LOCATION = 0;
 
@@ -28,19 +28,31 @@ public class Player implements Attackable {
 	 * Method that returns the current location of the player.
 	 */
 
-	public int location() {
+	public int getLocation() {
 		return location;
 	}
 
 	/**
-	 * Method allowing the player to attack enemies, subtracting hitpoints.
-	 *
-	 * @param enemy the name of the attacked enemy
+	 * Method that returns the current location of the player.
 	 */
 
-	public void attack(Enemy enemy) {
-		System.out.println(name + "attacks" + enemy.description);
-		enemy.health =- attackDamage;
+	public int getHealth() {
+		return health;
+	}
+
+	public void addHealth(int healthBonus) {
+		health += healthBonus;
+	}
+
+	/**
+	 * Method allowing the player to attack npcs, subtracting hitpoints.
+	 *
+	 * @param npc the attacked npc
+	 */
+
+	public void attack(NPC npc) {
+		npc.health =- attackDamage;
+		System.out.println("You attack " + npc.name + ", " + npc.name + "'s health =" + npc.health);
 	}
 
 	/**
@@ -51,13 +63,13 @@ public class Player implements Attackable {
 		this.location = location;
 	}
 
-	/**
-	 * Method that subtracts hitpoints in case the player is attacked.
-	 */
 
-	public void damage() {
-		System.out.println("You are being wounded");
-		health--;
+	public void damage(int damageDealt) {
+		health -= damageDealt;
+		System.out.println("You are being wounded, your current health = " + health);
+		if(health == 0) {
+			System.out.println("You died!");
+		}
 	}
-	
+
 }

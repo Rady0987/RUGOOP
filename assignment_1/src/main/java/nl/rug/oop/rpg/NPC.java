@@ -2,21 +2,27 @@ package nl.rug.oop.rpg;
 /**
  * A NPC class
  */
-abstract class NPC implements Inspectable, Interactable, Attackable {
+abstract class NPC implements Inspectable, Interactable {
     protected String name;
     protected String description;
+    protected String reply;
     protected int health;
+    protected int attackDamage;
     /**
      * Constructor
      *
      * @param name Name of the NPC
      * @param description Short description of the NPC
+     * @param reply A sentence that the NPC says
      * @param health Initial HitPoints of the NPC
+     * @param attackDamage The attack damage of the NPC
      */
-    public NPC(String name,String description, int health) {
+    public NPC(String name, String description, String reply, int health, int attackDamage) {
         this.name = name;
         this.description = description;
+        this.reply = reply;
         this.health = health;
+        this.attackDamage = attackDamage;
     }
 
     /**
@@ -24,7 +30,17 @@ abstract class NPC implements Inspectable, Interactable, Attackable {
      */
 
     public void inspect() {
-        System.out.println(name);
+        System.out.println(description);
+    }
+
+    /**
+     * Method allowing the enemy NPC attack the player, subtracting hit points
+     *
+     * @param player the name of the attacked player
+     */
+
+    public void attack(Player player) {
+        player.damage(attackDamage);
     }
 
     /**
@@ -44,6 +60,6 @@ abstract class NPC implements Inspectable, Interactable, Attackable {
      */
 
     public void interact(Player player) {
-        System.out.println(description);
+        System.out.println(name + " (" + description + ")" + reply);
     }
 }
