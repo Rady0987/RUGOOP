@@ -19,7 +19,7 @@ public class Game {
     	Door door2 = new Door("A black door",1);
     	room.addDoor(door2);
 		Computer computer = new Computer("Computer", "An ancient, broken computer", ": Hi my dear friend, you entered a very dangerous place, this labyrinth hides a lot of" +
-				" mythical creatures, some of them are not the most hospitable ones.\n" + "\t You have to be very brave, since you chose this risky path. Good luck! ", 99, 0);
+				" mythical creatures, some of them are not the most hospitable ones.\n" + "\t You have to be very brave, since you chose this risky path. Good luck! ", 99, 0, true);
 		room.addNPC(computer);
 		rooms.add(room);
 	}
@@ -30,7 +30,7 @@ public class Game {
 		Door door2 = new Door("An ethereal pass",3);
 		room.addDoor(door2);
 		Enemy enemy = new Enemy("Zulgeteb", "Troll",": Arrrr, how dare are you to step in the Zulgeteb's kingdom!?\n" +
-				"\t If you want remain alive, you have to fight me!!!", 5, 5);
+				"\t If you want remain alive, you have to fight me!!!", 10, 5,true);
 		room.addNPC(enemy);
 		rooms.add(room);
 	}
@@ -43,7 +43,7 @@ public class Game {
 		Door door3 = new Door("A bloody gate",3);
 		room.addDoor(door3);
 		Craftsman craftsman = new Craftsman("Malcolum", "Craftsman",": I'm glad to see you, weary traveller!\n" +
-				"\t My goods are ready to help you in your mission!", 5, 0);
+				"\t My goods are ready to help you in your mission!", 5, 0, true);
 		room.addNPC(craftsman);
 		rooms.add(room);
 	}
@@ -54,7 +54,7 @@ public class Game {
 		Door door2 = new Door("Light portal",4);
 		room.addDoor(door2);
 		Enemy enemy = new Enemy("Warrath", "Minotaur",": Grrr! Are you really so brave or just stupid enough to think you could defeat me?? \n" +
-				"\t You might have killed some trolls, but you are no match for me!!", 7, 3);
+				"\t You might have killed some trolls, but you are no match for me!!", 7, 3,true);
 		room.addNPC(enemy);
 		rooms.add(room);
 	}
@@ -65,7 +65,7 @@ public class Game {
 		Door door2 = new Door("The Ignited, Deadly Bridge",7);
 		room.addDoor(door2);
 		Paladin paladin = new Paladin("The Diviner of the Heaven","Paladin", ": Greetings, fearless Warrior!\n" +
-				"\t As a reward for your good deeds in the name of justice, I will offer you the priceless elixir of life!", 20, 0);
+				"\t As a reward for your good deeds in the name of justice, I will offer you the priceless elixir of life!", 20, 0, true);
 		room.addNPC(paladin);
 		rooms.add(room);
 	}
@@ -76,7 +76,7 @@ public class Game {
 		Door door2 = new Door("Light portal",4);
 		room.addDoor(door2);
 		Enemy enemy = new Enemy("Akath", "Demon",": Hmm, I can see your fears that you hide behind your courageous heart!\n" +
-				"\t You will never get out of here, this labyrinth will be your cage for an eternity...", 13, 5);
+				"\t You will never get out of here, this labyrinth will be your cage for an eternity...", 13, 5,true);
 		room.addNPC(enemy);
 		rooms.add(room);
 	}
@@ -85,7 +85,7 @@ public class Game {
 		Door door1 = new Door("The Ignited, Deadly Bridge ",7);
 		room.addDoor(door1);
 		Witch witch = new Witch("Queen Drach","Witch", ": Welcome, saviour, you have overcome a lot of challenges by now, however you haven't finished yet.\n" +
-				"\t The worst is yet to come, so I will grant you the power of the ancient Titans!", 20, 0);
+				"\t The worst is yet to come, so I will grant you the power of the ancient Titans!", 20, 0, true);
 		room.addNPC(witch);
 		rooms.add(room);
 	}
@@ -93,7 +93,7 @@ public class Game {
 	public void addRoom7(Room room) {
 		Enemy enemy = new Enemy("Yinglong","Dragon", ": I smell blood, I might be having some fresh human meat today... \n" +
 				"\t You can't run now, it was a fatal mistake to enter The Hell Incarnate Coliseum!!!\n" +
-				"\t Now taste my fire!!!!!", 50, 10);
+				"\t Now taste my fire!!!!!", 50, 10,true);
 		room.addNPC(enemy);
 		rooms.add(room);
 	}

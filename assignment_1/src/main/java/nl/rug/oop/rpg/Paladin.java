@@ -1,6 +1,11 @@
 package nl.rug.oop.rpg;
 
+/**
+ * A paladin class
+ */
+
 public class Paladin extends NPC {
+
     /**
      * Constructor
      *
@@ -9,17 +14,16 @@ public class Paladin extends NPC {
      * @param reply A sentence that the NPC says
      * @param health      Initial HitPoints of the NPC
      * @param attackDamage The attack damage of the NPC
+     * @param lifeState True if the NPC is alive, becomes False if it dies
      */
-    public Paladin(String name, String description, String reply, int health, int attackDamage) {
-        super(name, description, reply, health, attackDamage);
+    public Paladin(String name, String description, String reply, int health, int attackDamage, boolean lifeState) {
+        super(name, description, reply, health, attackDamage, lifeState);
     }
 
     /**
      * Method allowing the enemy Paladin heal the player, adding hit points
-     *
      * @param player the name of the healed player
      */
-
     public void heal (Player player) {
         player.addHealth(5);
         System.out.println(name + "healed you, now you have " + player.getHealth() + " hitpoints");

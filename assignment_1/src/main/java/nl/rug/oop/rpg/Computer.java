@@ -1,4 +1,7 @@
 package nl.rug.oop.rpg;
+/**
+ * A computer class
+ */
 
 public class Computer extends NPC {
 
@@ -10,8 +13,9 @@ public class Computer extends NPC {
      * @param reply A sentence that the NPC says
      * @param health      Initial HitPoints of the NPC
      * @param attackDamage The attack damage of the NPC
+     * @param lifeState True if the NPC is alive, becomes False if it dies
      */
-    public Computer(String name, String description, String reply, int health, int attackDamage) {
-        super(name, description, reply, health, attackDamage);
+    public Computer(String name, String description, String reply, int health, int attackDamage, boolean lifeState) {
+        super(name, description, reply, health, attackDamage, lifeState);
     }
 }

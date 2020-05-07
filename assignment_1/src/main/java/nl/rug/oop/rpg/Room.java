@@ -1,5 +1,6 @@
 package nl.rug.oop.rpg;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -59,23 +60,36 @@ public class Room implements Inspectable {
 	public void NPCInteract(int NPCNumber, Player player) {
 		Scanner scanner = new Scanner(System.in);
 		NPCs.get(NPCNumber).interact(player);
-		System.out.println("\n");
-		System.out.println("\t Attack " + NPCs.get(NPCNumber).name + "? (1-YES / 0-NO)");
-		int selected = scanner.nextInt();
-		if (NPCs.get(NPCNumber) instanceof Enemy) {
-			if (selected == 1) {
-				//while (NPCs.get(NPCNumber).health != 0)
-					//player.attack(NPCs.get(NPCNumber));
-				 NPCs.get(NPCNumber).attack(player);
+		if (NPCs.get(NPCNumber).getLifeState()) {
+			System.out.println("\n");
+			System.out.println("\t Attack " + NPCs.get(NPCNumber).name + "? (1-YES / 0-NO)");
+			int selected = scanner.nextInt();
+			if (NPCs.get(NPCNumber) instanceof Enemy) {
+				if (selected == 1) {
+					player.attack((Enemy) NPCs.get(NPCNumber));
+					((Enemy) NPCs.get(NPCNumber)).attack(player);
+					attackContinue(player, NPCNumber);
+				} else {
+					System.out.println("You can't continue your journey safe! You have to fight for your honour!");
+					attackContinue(player, NPCNumber);
+				}
 			} else {
-				System.out.println("You can't continue your journey safe! You have to fight for your honour!");
-				player.attack(NPCs.get(NPCNumber));
-				//((Enemy) NPCs.get(NPCNumber)).attack(player);
+				if (selected == 1) {
+					System.out.println(NPCs.get(NPCNumber).name + ": I'm here to help you! Why would you attack me ?!!");
+				}
 			}
-		} else {
-			if (selected == 1) {
-				System.out.println(NPCs.get(NPCNumber).name + ": I'm here to help you! Why would you attack me ?!!");
-			}
+		}
+	}
+
+	public void attackContinue (Player player, int NPCNumber) {
+		Scanner scanner = new Scanner(System.in);
+		while (NPCs.get(NPCNumber).getHealth() > 0) {
+			System.out.println("\t Press 1 to continue attacking !");
+			int inputKey = scanner.nextInt();
+			player.attack((Enemy) NPCs.get(NPCNumber));
+			if (NPCs.get(NPCNumber).getLifeState())
+				((Enemy) NPCs.get(NPCNumber)).attack(player);
+			//System.out.println("MORT NAHUI");
 		}
 	}
 }

@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
     	Game game = new Game();
-    	Player player = new Player("captain awesome",10,3);
+    	Player player = new Player("captain awesome",50,3,0);
     	game.addPlayer(player);
     	Room room0 = new Room("a rather dusty room full with computers and two doors.");
     	game.addRoom0(room0);
@@ -23,9 +23,6 @@ public class Main {
 		game.addRoom6(room6);
 		Room room7 = new Room("The Hell Incarnate Coliseum.");
 		game.addRoom7(room7);
-		//while(player.getHealth() > 0) {
-			game.playGame();
-		//}
-		System.out.println("GAME OVER");
+		game.playGame();
     }
 }
