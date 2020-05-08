@@ -114,7 +114,7 @@ public class Game implements Serializable{
 		this.player= player;
 	}
 
-	public void playGame() throws ClassNotFoundException{
+	public void playGame() throws ClassNotFoundException, FileNotFoundException{
 		Scanner scanner = new Scanner(System.in);
 		defaultMenu();
     	while(scanner.hasNextInt() && (player.getHealth() > 0) ) {
@@ -151,7 +151,7 @@ public class Game implements Serializable{
 		}
 	}
 
-	public void quickSave(){
+	public void quickSave() throws FileNotFoundException{
 		file.save();
 	}
 

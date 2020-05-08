@@ -4,7 +4,7 @@ import java.io.*;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException{
+    public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException{
     	Game game = new Game();
     	Player player = new Player("captain awesome",50,3,0);
     	game.addPlayer(player);
@@ -24,7 +24,7 @@ public class Main {
 		game.addRoom6(room6);
 		Room room7 = new Room("The Hell Incarnate Coliseum.");
 		game.addRoom7(room7);
-		FileSaving file = new FileSaving("savedgames");
+		FileSaving file = new FileSaving("savedgames", game);
 		game.theSaveLocation(file);
 		game.playGame();
     }
