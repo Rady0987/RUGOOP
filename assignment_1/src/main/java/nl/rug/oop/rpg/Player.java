@@ -1,15 +1,17 @@
 package nl.rug.oop.rpg;
+import java.io.Serializable;
 /**
  * A player class
  */
 
-public class Player implements Attackable{
+public class Player implements Attackable, Serializable{
 	private String name;
 	private int location;
 	private int health;
 	protected int attackDamage;
 	private static int DEFAULT_LOCATION = 0;
 	private int armor;
+	private static final long serialVersionUID = 42L;
 
 	/**
 	 * Constructor

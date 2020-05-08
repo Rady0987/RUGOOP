@@ -2,14 +2,20 @@ package nl.rug.oop.rpg;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
+import java.io.Serializable;
+
+
 
 /**
  * A room class
  */
-public class Room implements Inspectable {
+public class Room implements Inspectable, Serializable{
 	private String description;
 	private ArrayList<Door> doors;
 	private ArrayList<NPC> NPCs;
+	private static final long serialVersionUID = 42L;
+	/* This field will not be serialized */
+	private transient Scanner scanner;
 
 	/**
 	 * Constructor, also contains the lists with doors and NPCs
@@ -63,6 +69,7 @@ public class Room implements Inspectable {
 			if (selected == 1) {
 				player.attack((AttackDoor) doors.get(doorNR));
 				((AttackDoor) doors.get(doorNR)).attack(player);
+				attackContinueDoor(player, doorNR);
 			} else {
 				System.out.println("You can't go through this door without attacking it!");
 			}
@@ -103,6 +110,17 @@ public class Room implements Inspectable {
 			if (NPCs.get(NPCNumber).getLifeState())
 				((Enemy) NPCs.get(NPCNumber)).attack(player);
 			//System.out.println("MORT NAHUI");
+		}
+	}
+
+	public void attackContinueDoor(Player player, int doorNR) {
+		Scanner scanner = new Scanner(System.in);
+		while (doors.get(doorNR).getStrength() > 0) {
+			System.out.println("\t Press 1 to continue attacking !");
+			int inputKey = scanner.nextInt();
+			player.attack((AttackDoor) doors.get(doorNR));
+			if (!doors.get(doorNR).isDoorOpen())
+				((AttackDoor) doors.get(doorNR)).attack(player);
 		}
 	}
 }

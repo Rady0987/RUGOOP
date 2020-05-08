@@ -1,16 +1,27 @@
 package nl.rug.oop.rpg;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.*;
+
+
 
 /**
  * The game itself
  */
-public class Game {
+public class Game implements Serializable{
 	private Player player;
 	private ArrayList<Room> rooms;
+	private FileSaving file;
+	private static final long serialVersionUID = 42L;
+	/* This field will not be serialized */
+	private transient Scanner scanner;
 
 	public Game() {
 		rooms = new ArrayList<>();
+	}
+
+	public void theSaveLocation(FileSaving file){
+		this.file = file;
 	}
 
 	public void addRoom0(Room room) {
@@ -103,7 +114,7 @@ public class Game {
 		this.player= player;
 	}
 
-	public void playGame() {
+	public void playGame() throws ClassNotFoundException{
 		Scanner scanner = new Scanner(System.in);
 		defaultMenu();
     	while(scanner.hasNextInt() && (player.getHealth() > 0) ) {
@@ -129,9 +140,23 @@ public class Game {
 					rooms.get(player.getLocation()).NPCInteract(interactID, player);
 				}
 			}
+			if(num == 3){
+				quickSave();
+			}
+			if(num == 4){
+				quickLoad();
+			}
 		defaultMenu();
 
 		}
+	}
+
+	public void quickSave(){
+		file.save();
+	}
+
+	public void quickLoad() throws ClassNotFoundException{
+		file.load();
 	}
 
 	public void defaultMenu() {
@@ -139,6 +164,8 @@ public class Game {
 		System.out.println("\t (0) Look around");
 		System.out.println("\t (1) Look for a way out");
 		System.out.println("\t (2) Look for company");
+		System.out.println("\t (3) QuickSave");
+		System.out.println("\t (4) QuickLoad");
 	}
 
 	public void lookAround() {
