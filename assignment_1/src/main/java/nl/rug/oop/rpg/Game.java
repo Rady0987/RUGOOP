@@ -146,6 +146,12 @@ public class Game implements Serializable{
 			if(num == 4){
 				quickLoad();
 			}
+			if(num == 5){
+				save();
+			}
+			if(num == 6){
+				load();
+			}
 		defaultMenu();
 
 		}
@@ -159,6 +165,23 @@ public class Game implements Serializable{
 		file.load();
 	}
 
+	public void load() throws ClassNotFoundException{
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Which file? (-1 : none)");
+		file.printFiles();
+		int num = scanner.nextInt();
+		if (num > -1){
+			file.load(num);
+		}
+	}
+
+	public void save() throws FileNotFoundException{
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Filename?");
+		String fileName = scanner.nextLine();
+		file.save(fileName);
+	}
+
 	public void defaultMenu() {
 		System.out.println("What do you want to do?");
 		System.out.println("\t (0) Look around");
@@ -166,6 +189,8 @@ public class Game implements Serializable{
 		System.out.println("\t (2) Look for company");
 		System.out.println("\t (3) QuickSave");
 		System.out.println("\t (4) QuickLoad");
+		System.out.println("\t (5) Save");
+		System.out.println("\t (6) Load");
 	}
 
 	public void lookAround() {
