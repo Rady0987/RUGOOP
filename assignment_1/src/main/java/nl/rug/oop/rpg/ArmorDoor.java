@@ -12,7 +12,7 @@ public class ArmorDoor extends Door {
      * @param roomBehind  The room that is behind that door
      */
     public ArmorDoor(String description, int roomBehind) {
-        super(description, roomBehind);
+        super(description, roomBehind, 0, 0);
     }
 
     /**

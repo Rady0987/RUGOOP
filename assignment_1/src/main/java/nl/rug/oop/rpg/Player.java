@@ -58,6 +58,14 @@ public class Player implements Attackable{
 	}
 
 	/**
+	 * Method allowing the player to attack doors, subtracting hitpoints.
+	 * @param door the attacked door
+	 */
+	public void attack(AttackDoor attackdoor){
+		attackdoor.damage(attackDamage);
+	}
+
+	/**
 	 * Method that modifies the current location of the player.
 	 * @param location the new location
 	 */
@@ -86,4 +94,6 @@ public class Player implements Attackable{
 	public void plusArmor (int bonus){
 		armor += bonus;
 	}
+
+	
 }

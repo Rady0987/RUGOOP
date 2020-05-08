@@ -6,6 +6,9 @@ package nl.rug.oop.rpg;
 abstract class Door implements Inspectable, Interactable {
 	private String description;
 	private int roomBehind;
+	protected boolean doorOpen;
+	protected int strength;
+	protected int attackDamage;
 
 	/**
 	 * Constructor
@@ -13,9 +16,16 @@ abstract class Door implements Inspectable, Interactable {
 	 * @param description Short description of the door
 	 * @param roomBehind The room that is behind that door
 	 */
-	public Door(String description, int roomBehind) {
+	public Door(String description, int roomBehind, int strength, int attackDamage) {
 		this.description = description;
 		this.roomBehind = roomBehind;
+		this.strength = strength;
+		this.attackDamage = attackDamage;
+		if(strength > 0){
+			doorOpen = false;
+		}else{
+			doorOpen = true;
+		}
 	}
 
 	public void inspect() {
@@ -23,6 +33,23 @@ abstract class Door implements Inspectable, Interactable {
 	}
 
 	public void interact(Player player) {
-		player.changeLocation(roomBehind);
+		if(doorOpen == true ){
+			player.changeLocation(roomBehind);
+		}
 	}
+
+	/**
+     * @return whether the door is open.
+     */
+    public boolean isDoorOpen() {
+        return doorOpen;
+    }
+
+    /**
+     * @return the strength of the door.
+     */
+    public int getStrength() {
+        return strength;
+    }
+
 }

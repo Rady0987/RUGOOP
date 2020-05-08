@@ -54,7 +54,20 @@ public class Room implements Inspectable {
 	}
 
 	public void doorInteract(int doorNR, Player player) {
+		Scanner scanner = new Scanner(System.in);
 		doors.get(doorNR).interact(player);
+		if (!doors.get(doorNR).isDoorOpen()) {
+			System.out.println("\n");
+			System.out.println("\t Attack the door? (1-YES / 0-NO)");
+			int selected = scanner.nextInt();
+			if (selected == 1) {
+				player.attack((AttackDoor) doors.get(doorNR));
+				((AttackDoor) doors.get(doorNR)).attack(player);
+			} else {
+				System.out.println("You can't go through this door without attacking it!");
+			}
+		}
+
 	}
 
 	public void NPCInteract(int NPCNumber, Player player) {

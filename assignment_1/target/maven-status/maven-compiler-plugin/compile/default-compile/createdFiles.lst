@@ -1,0 +1,17 @@
+nl/rug/oop/rpg/Main.class
+nl/rug/oop/rpg/Interactable.class
+nl/rug/oop/rpg/Enemy.class
+nl/rug/oop/rpg/Computer.class
+nl/rug/oop/rpg/Room.class
+nl/rug/oop/rpg/Inspectable.class
+nl/rug/oop/rpg/Game.class
+nl/rug/oop/rpg/Paladin.class
+nl/rug/oop/rpg/ArmorDoor.class
+nl/rug/oop/rpg/Attackable.class
+nl/rug/oop/rpg/Door.class
+nl/rug/oop/rpg/Craftsman.class
+nl/rug/oop/rpg/NPC.class
+nl/rug/oop/rpg/Player.class
+nl/rug/oop/rpg/Witch.class
+nl/rug/oop/rpg/AttackDoor.class
+nl/rug/oop/rpg/Item.class
