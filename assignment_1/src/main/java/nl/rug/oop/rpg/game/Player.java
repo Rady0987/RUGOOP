@@ -25,8 +25,12 @@ public class Player implements Attackable, Serializable{
 	 * @param armor Armor level of the Player.
 	 */
 	public Player(String name, int health, int attackDamage, int armor) {
+		this(name, health, attackDamage, armor, DEFAULT_LOCATION);
+	}
+
+	public Player(String name, int health, int attackDamage, int armor, int location) {
 		this.name = name;
-		this.location = DEFAULT_LOCATION;
+		this.location = location;
 		this.health = health;
 		this.attackDamage = attackDamage;
 		this.armor = armor;
