@@ -1,14 +1,16 @@
 package nl.rug.oop.rpg;
+import java.io.Serializable;
 /**
  * A door class
  */
 
-abstract class Door implements Inspectable, Interactable {
+abstract class Door implements Inspectable, Interactable, Serializable {
 	private String description;
 	private int roomBehind;
 	protected boolean doorOpen;
 	protected int strength;
 	protected int attackDamage;
+	private static final long serialVersionUID = 42L;
 
 	/**
 	 * Constructor

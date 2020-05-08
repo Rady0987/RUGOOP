@@ -1,15 +1,17 @@
 package nl.rug.oop.rpg;
+import java.io.Serializable;
 /**
  * A NPC class
  */
 
-abstract class NPC implements Inspectable, Interactable {
+abstract class NPC implements Inspectable, Interactable, Serializable {
     protected String name;
     protected String description;
     protected String reply;
     protected int health;
     protected int attackDamage;
     protected boolean lifeState;
+    private static final long serialVersionUID = 42L;
 
     /**
      * Constructor

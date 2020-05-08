@@ -122,5 +122,6 @@ public class Room implements Inspectable, Serializable{
 			if (!doors.get(doorNR).isDoorOpen())
 				((AttackDoor) doors.get(doorNR)).attack(player);
 		}
+		doorInteract(doorNR, player);
 	}
 }

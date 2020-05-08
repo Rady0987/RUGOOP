@@ -18,7 +18,7 @@ public class FileSaving implements Serializable{
 	}
 
 	public void save() throws FileNotFoundException{
-		String location = name + "\\quicksave.ser";
+		String location = name + "/quicksave.ser";
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(new File(location)));
     		out.writeObject(game);
@@ -29,7 +29,7 @@ public class FileSaving implements Serializable{
 	}
 
 	public void load() throws ClassNotFoundException{
-		String location = name + "\\quicksave.ser";
+		String location = name + "/quicksave.ser";
 		try{
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File(location)));
 			game = (Game) in.readObject(); 
