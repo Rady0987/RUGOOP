@@ -1,10 +1,16 @@
 package nl.rug.oop.rpg;
+import nl.rug.oop.rpg.game.Game;
+import nl.rug.oop.rpg.game.Player;
+import nl.rug.oop.rpg.game.Room;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.Scanner;
-import java.io.*;
 
 public class Main {
 
-    public static void main(String[] args) throws ClassNotFoundException, FileNotFoundException{
+    public static void main(String[] args) throws ClassNotFoundException, IOException {
     	Game game = new Game();
     	Scanner scanner = new Scanner(System.in);
 		System.out.println("You are about to start the game, what do you want to do?");
@@ -43,7 +49,7 @@ public class Main {
 			saveDirectory.mkdir();
 			Properties rpgProperties = new Properties();
 			rpgProperties.setProperty("playerName", "Howard the Duck");
-			rpgProperties.store(fileOutputStream, "These are the properties of a player in the RPG game");
+			rpgProperties.store(new FileOutputStream(new File("config")), "These are the properties of a player in the RPG game");
 		}
     }
 }

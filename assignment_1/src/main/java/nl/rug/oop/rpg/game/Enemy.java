@@ -1,9 +1,12 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.game;
+
+import nl.rug.oop.rpg.utility.Attackable;
+
 /**
  * An enemy class
  */
 
-public class Enemy extends NPC implements Attackable{
+public class Enemy extends NPC implements Attackable {
 
     /**
      * Constructor
@@ -32,8 +35,8 @@ public class Enemy extends NPC implements Attackable{
     }
 
     /**
-     * Method allowing the enemy NPC attack the player, subtracting hit points
-     * @param player the name of the attacked player
+     * Method allowing the enemy NPC attack the player, subtracting hit points.
+     * @param player the name of the attacked player.
      */
     public void attack(Player player) {
         player.damage(attackDamage);

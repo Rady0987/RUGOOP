@@ -1,14 +1,13 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.game;
+import nl.rug.oop.rpg.utility.Inspectable;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 import java.io.Serializable;
 
-
-
 /**
- * A room class
+ * A room class.
  */
+
 public class Room implements Inspectable, Serializable{
 	private String description;
 	private ArrayList<Door> doors;
@@ -18,9 +17,9 @@ public class Room implements Inspectable, Serializable{
 	private transient Scanner scanner;
 
 	/**
-	 * Constructor, also contains the lists with doors and NPCs
+	 * Constructor, also contains the lists with doors and NPCs.
 	 *
-	 * @param description Short description of the room
+	 * @param description Short description of the room.
 	 */
 
 	public Room(String description) {
@@ -29,18 +28,32 @@ public class Room implements Inspectable, Serializable{
 		NPCs = new ArrayList<>();
 	}
 
+	/**
+	 * Method that prints the description of the game.
+	 */
 	public void inspect() {
 		System.out.println(description);
 	}
 
+	/**
+	 * Method that add a door to a room.
+	 * @param door A door instance with all it's parameters.
+	 */
 	public void addDoor(Door door) {
 		doors.add(door);
 	}
 
+	/**
+	 * Method that add a NPC to a room.
+	 * @param npc A NPC instance with all it's parameters.
+	 */
 	public void addNPC(NPC npc) {
 		NPCs.add(npc);
 	}
 
+	/**
+	 * Method that prints all the doors in a room.
+	 */
 	public void inspectDoors() {
 		int step = 0; 
 		for(Door door : doors) {
@@ -50,6 +63,9 @@ public class Room implements Inspectable, Serializable{
 		}
 	}
 
+	/**
+	 * Method that prints all the NPCs in a room.
+	 */
 	public void inspectNPCs() {
 		int step = 0;
 		for(NPC npc : NPCs) {
@@ -59,9 +75,16 @@ public class Room implements Inspectable, Serializable{
 		}
 	}
 
+	/**
+	 * Method that allows the player to interact with a door.
+	 * @param doorNR The index of the door in the ArrayList.
+	 * @param player The name of the player.
+	 */
 	public void doorInteract(int doorNR, Player player) {
 		Scanner scanner = new Scanner(System.in);
 		doors.get(doorNR).interact(player);
+		if (doors.get(doorNR) instanceof ArmorDoor)
+			((ArmorDoor) doors.get(doorNR)).addArmor(player);
 		if (!doors.get(doorNR).isDoorOpen()) {
 			System.out.println("\n");
 			System.out.println("\t Attack the door? (1-YES / 0-NO)");
@@ -74,18 +97,23 @@ public class Room implements Inspectable, Serializable{
 				System.out.println("You can't go through this door without attacking it!");
 			}
 		}
-
 	}
 
+	/**
+	 * Method that allows the player to interact with a NPC.
+	 * @param NPCNumber The index of the NPC in the ArrayList.
+	 * @param player The name of the player.
+	 */
 	public void NPCInteract(int NPCNumber, Player player) {
 		Scanner scanner = new Scanner(System.in);
 		NPCs.get(NPCNumber).interact(player);
-		if (NPCs.get(NPCNumber).getLifeState()) {
+		NPCSpecialAbilitiesInteract(NPCNumber, player);
+		if(NPCs.get(NPCNumber).getLifeState()) {
 			System.out.println("\n");
 			System.out.println("\t Attack " + NPCs.get(NPCNumber).name + "? (1-YES / 0-NO)");
 			int selected = scanner.nextInt();
-			if (NPCs.get(NPCNumber) instanceof Enemy) {
-				if (selected == 1) {
+			if(NPCs.get(NPCNumber) instanceof Enemy) {
+				if(selected == 1) {
 					player.attack((Enemy) NPCs.get(NPCNumber));
 					((Enemy) NPCs.get(NPCNumber)).attack(player);
 					attackContinue(player, NPCNumber);
@@ -101,6 +129,11 @@ public class Room implements Inspectable, Serializable{
 		}
 	}
 
+	/**
+	 * Method that allows the player to attack a NPC after interacting with it.
+	 * @param NPCNumber The index of the NPC in the ArrayList.
+	 * @param player The name of the player.
+	 */
 	public void attackContinue (Player player, int NPCNumber) {
 		Scanner scanner = new Scanner(System.in);
 		while (NPCs.get(NPCNumber).getHealth() > 0) {
@@ -109,10 +142,14 @@ public class Room implements Inspectable, Serializable{
 			player.attack((Enemy) NPCs.get(NPCNumber));
 			if (NPCs.get(NPCNumber).getLifeState())
 				((Enemy) NPCs.get(NPCNumber)).attack(player);
-			//System.out.println("MORT NAHUI");
 		}
 	}
 
+	/**
+	 * Method that allows the player to attack a door after interacting with it.
+	 * @param doorNR The index of the NPC in the ArrayList.
+	 * @param player The name of the player.
+	 */
 	public void attackContinueDoor(Player player, int doorNR) {
 		Scanner scanner = new Scanner(System.in);
 		while (doors.get(doorNR).getStrength() > 0) {
@@ -123,5 +160,44 @@ public class Room implements Inspectable, Serializable{
 				((AttackDoor) doors.get(doorNR)).attack(player);
 		}
 		doorInteract(doorNR, player);
+	}
+
+	/**
+	 * Method that allows the player to interact with NPCs that have special power-ups.
+	 * @param NPCNumber The index of the NPC in the ArrayList.
+	 * @param player The name of the player.
+	 */
+	public void NPCSpecialAbilitiesInteract(int NPCNumber, Player player) {
+		if (NPCs.get(NPCNumber) instanceof Paladin)
+			((Paladin)NPCs.get(NPCNumber)).heal(player);
+		if (NPCs.get(NPCNumber) instanceof Craftsman)
+			((Craftsman)NPCs.get(NPCNumber)).inspectItems(player);
+		if (NPCs.get(NPCNumber) instanceof Witch)
+			((Witch) NPCs.get(NPCNumber)).damageUpgrade(player);
+	}
+
+	/**
+	 * Method that ends the game if player wins.
+	 * @return true while the last NPC is alive.
+	 */
+	public boolean winGame() {
+		boolean status = true;
+		if(NPCs.get(0).getHealth() <= 0)
+			status = false;
+		return status;
+	}
+
+	/**
+	 * @return the number of doors in a room.
+	 */
+	public int getNumberOfDoors() {
+		return doors.size();
+	}
+
+	/**
+	 * @return the number of NPCs in a room.
+	 */
+	public int getNumberOfNPCs() {
+		return NPCs.size();
 	}
 }

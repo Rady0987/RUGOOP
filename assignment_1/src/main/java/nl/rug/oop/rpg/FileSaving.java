@@ -1,5 +1,6 @@
 package nl.rug.oop.rpg;
-import java.util.ArrayList;
+import nl.rug.oop.rpg.game.Game;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -80,4 +81,6 @@ public class FileSaving implements Serializable{
             counter++;
         }
 	}
+
+
 }
