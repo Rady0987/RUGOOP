@@ -1,7 +1,7 @@
 #These are the properties of a player in the RPG game
-#Sat May 09 01:18:07 CEST 2020
+#Sat May 09 07:32:48 EEST 2020
 playerArmor=0
 playerName=Howard the Duck
 playerStartLocation=0
-playerHealth=50
+playerHealth=60
 playerAttackDamage=3

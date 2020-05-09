@@ -7,7 +7,7 @@ import java.io.Serializable;
  * A door class.
  */
 
-abstract class Door implements Inspectable, Interactable, Serializable {
+public abstract class Door implements Inspectable, Interactable, Serializable {
 	private String description;
 	private int roomBehind;
 	protected boolean doorOpen;

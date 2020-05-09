@@ -36,10 +36,13 @@ public class Room implements Inspectable, Serializable{
 	}
 
 	/**
-	 * Method that add a door to a room.
+	 * Method that add a door to a room and checks if is not null.
 	 * @param door A door instance with all it's parameters.
 	 */
 	public void addDoor(Door door) {
+		if (door == null) {
+			return;
+		}
 		doors.add(door);
 	}
 
@@ -168,12 +171,16 @@ public class Room implements Inspectable, Serializable{
 	 * @param player The name of the player.
 	 */
 	public void NPCSpecialAbilitiesInteract(int NPCNumber, Player player) {
-		if (NPCs.get(NPCNumber) instanceof Paladin)
-			((Paladin)NPCs.get(NPCNumber)).heal(player);
-		if (NPCs.get(NPCNumber) instanceof Craftsman)
-			((Craftsman)NPCs.get(NPCNumber)).inspectItems(player);
-		if (NPCs.get(NPCNumber) instanceof Witch)
-			((Witch) NPCs.get(NPCNumber)).damageUpgrade(player);
+		if (!NPCs.get(NPCNumber).interactState) {
+			if (NPCs.get(NPCNumber) instanceof Paladin)
+				((Paladin) NPCs.get(NPCNumber)).heal(player);
+			if (NPCs.get(NPCNumber) instanceof Craftsman)
+				((Craftsman) NPCs.get(NPCNumber)).inspectItems(player);
+			if (NPCs.get(NPCNumber) instanceof Witch)
+				((Witch) NPCs.get(NPCNumber)).damageUpgrade(player);
+		} else {
+			System.out.println(NPCs.get(NPCNumber).name + " (" + NPCs.get(NPCNumber).description + "):" + " Hey, how are you doing ?");
+		}
 	}
 
 	/**

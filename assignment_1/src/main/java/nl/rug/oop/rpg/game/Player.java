@@ -95,7 +95,7 @@ public class Player implements Attackable, Serializable{
 		} else {
 			health -= damageDealt;
 		}
-		System.out.println("You are being wounded, your current health = " + health);
+		System.out.println("You are being wounded, your current health = " + health + ", your armor = " + armor);
 		if(health <= 0) {
 			System.out.println("\n");
 			System.out.println("\t You died!\n" + "\t GAME OVER");

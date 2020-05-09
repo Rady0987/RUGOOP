@@ -1,11 +1,12 @@
 package nl.rug.oop.rpg.game;
-import nl.rug.oop.rpg.utility.Attackable;
 
+import nl.rug.oop.rpg.utility.Attackable;
+import nl.rug.oop.rpg.utility.Harmful;
 /**
  * An AttackDoor class.
  */
 
-public class AttackDoor extends Door implements Attackable {
+public class AttackDoor extends Door implements Attackable, Harmful {
 
     /**
      * Constructor

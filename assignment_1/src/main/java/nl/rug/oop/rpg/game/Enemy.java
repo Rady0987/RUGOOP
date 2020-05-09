@@ -1,12 +1,15 @@
 package nl.rug.oop.rpg.game;
 
+import nl.rug.oop.rpg.game.NPC;
+import nl.rug.oop.rpg.game.Player;
 import nl.rug.oop.rpg.utility.Attackable;
+import nl.rug.oop.rpg.utility.Harmful;
 
 /**
  * An enemy class
  */
 
-public class Enemy extends NPC implements Attackable {
+public class Enemy extends NPC implements Attackable, Harmful {
 
     /**
      * Constructor
@@ -17,9 +20,10 @@ public class Enemy extends NPC implements Attackable {
      * @param health Initial HitPoints of the enemy
      * @param attackDamage Damage the enemy deals
      * @param lifeState True if the NPC is alive, becomes False if it dies
+     * @param interactState Initialized with 0, becomes 1 after one interaction with the NPCs.
      */
-    public Enemy(String name, String description, String reply, int health, int attackDamage, boolean lifeState) {
-        super(name, description, reply, health, attackDamage, lifeState);
+    public Enemy(String name, String description, String reply, int health, int attackDamage, boolean lifeState, boolean interactState) {
+        super(name, description, reply, health, attackDamage, lifeState, false);
     }
 
     /**

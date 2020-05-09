@@ -1,4 +1,8 @@
 package nl.rug.oop.rpg.game;
+import nl.rug.oop.rpg.game.Item;
+import nl.rug.oop.rpg.game.NPC;
+import nl.rug.oop.rpg.game.Player;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,9 +22,10 @@ public class Craftsman extends NPC {
      * @param health Initial HitPoints of the NPC.
      * @param attackDamage The attack damage of the NPC.
      * @param lifeState True if the NPC is alive, becomes False if it dies.
+     * @param interactState Initialized with 0, becomes 1 after one interaction with the NPCs.
      */
-    public Craftsman(String name, String description, String reply, int health, int attackDamage, boolean lifeState) {
-        super(name, description, reply, health, attackDamage, lifeState);
+    public Craftsman(String name, String description, String reply, int health, int attackDamage, boolean lifeState, boolean interactState) {
+        super(name, description, reply, health, attackDamage, lifeState, false);
         craftItems();
     }
 
@@ -63,16 +68,19 @@ public class Craftsman extends NPC {
         if (selected == 0) {
             player.incDamage(5);
             System.out.println(Choise_Message);
+            interactState = true;
         }
         if (selected == 1) {
             player.plusArmor(8);
             System.out.println(Choise_Message);
+            interactState = true;
         }
         if (selected == 2) {
             player.addHealth(5);
             System.out.println(Choise_Message);
+            interactState = true;
         }
-        if(selected > items.size()-1)
+        if(selected > items.size() - 1)
             System.out.println("Oh, looks like you don't need anything. (Invalid item)");
     }
 }

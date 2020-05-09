@@ -1,4 +1,8 @@
 package nl.rug.oop.rpg.game;
+
+import nl.rug.oop.rpg.game.NPC;
+import nl.rug.oop.rpg.game.Player;
+
 /**
  * A witch class.
  */
@@ -16,9 +20,10 @@ public class Witch extends NPC {
      * @param attackDamage The attack damage of the NPC.
      * @param lifeState True if the NPC is alive, becomes False if it dies.
      * @param playerBonus The amount of attack damage granted to the player.
+     * @param interactState Initialized with 0, becomes 1 after one interaction with the NPCs.
      */
-    public Witch(String name, String description, String reply, int health, int attackDamage, boolean lifeState, int playerBonus) {
-        super(name, description, reply, health, attackDamage, lifeState);
+    public Witch(String name, String description, String reply, int health, int attackDamage, boolean lifeState, int playerBonus, boolean interactState) {
+        super(name, description, reply, health, attackDamage, lifeState,false);
         this.playerBonus = playerBonus;
     }
 
@@ -29,5 +34,6 @@ public class Witch extends NPC {
     public void damageUpgrade(Player player) {
         player.incDamage(playerBonus);
         System.out.println("Your damage increased with " + playerBonus + " points!");
+        interactState = true;
     }
 }

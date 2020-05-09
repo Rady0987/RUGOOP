@@ -1,19 +1,20 @@
 package nl.rug.oop.rpg.game;
 import nl.rug.oop.rpg.utility.Inspectable;
 import nl.rug.oop.rpg.utility.Interactable;
-
 import java.io.Serializable;
+
 /**
  * A NPC class.
  */
 
-abstract class NPC implements Inspectable, Interactable, Serializable {
+public abstract class NPC implements Inspectable, Interactable, Serializable {
     protected String name;
     protected String description;
     protected String reply;
     protected int health;
     protected int attackDamage;
     protected boolean lifeState;
+    protected boolean interactState;
     private static final long serialVersionUID = 42L;
 
     /**
@@ -25,14 +26,16 @@ abstract class NPC implements Inspectable, Interactable, Serializable {
      * @param health Initial HitPoints of the NPC.
      * @param attackDamage The attack damage of the NPC.
      * @param lifeState True if the NPC is alive, becomes False if it dies.
+     * @param interactState Initialized with false, becomes true after one interaction with the NPCs.
      */
-    public NPC(String name, String description, String reply, int health, int attackDamage, boolean lifeState) {
+    public NPC(String name, String description, String reply, int health, int attackDamage, boolean lifeState, boolean interactState) {
         this.name = name;
         this.description = description;
         this.reply = reply;
         this.health = health;
         this.attackDamage = attackDamage;
         this.lifeState = lifeState;
+        this.interactState = interactState;
     }
 
     /**
