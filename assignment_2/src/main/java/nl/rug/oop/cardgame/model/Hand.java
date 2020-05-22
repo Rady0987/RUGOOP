@@ -57,7 +57,7 @@ public class Hand implements Emptiable, Sized, Iterable<Card> {
         private ListIterator<Card> backing;
 
         /**
-         * Create an iterator for this immutable discard pile using the
+         * Create an iterator for this immutable hand using the
          * iterator of the hand it protects
          */
         public ConcreteHandIterator() {
@@ -65,7 +65,7 @@ public class Hand implements Emptiable, Sized, Iterable<Card> {
         }
 
         /**
-         * Find the next card in this discard pile
+         * Find the next card in this hand
          */
         @Override
         public Card next() {
@@ -81,7 +81,7 @@ public class Hand implements Emptiable, Sized, Iterable<Card> {
         }
 
         /**
-         * Removes a card from this discard pile
+         * Removes a card from the hand
          */
         @Override
         public void remove() {
@@ -107,7 +107,7 @@ public class Hand implements Emptiable, Sized, Iterable<Card> {
     }
 
     /**
-     * Check if there are any cards left in this pile.
+     * Check if there are any cards left in the hand
      */
     @Override
     public boolean isEmpty() {
@@ -115,7 +115,7 @@ public class Hand implements Emptiable, Sized, Iterable<Card> {
     }
 
     /**
-     * Remove all the cards in this pile
+     * Remove all the cards in the hand
      */
     @Override
     public void empty() {

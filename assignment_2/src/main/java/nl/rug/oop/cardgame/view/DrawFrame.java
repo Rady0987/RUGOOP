@@ -15,9 +15,9 @@ public class DrawFrame extends JFrame {
         /* Make sure our program exits when we close the frame */
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /* Add a menu to the frame */
-        setJMenuBar(new ButtonBar(drawGame));
+        setJMenuBar(new ButtonBar(drawGame));  
         /* Create a view for the game */
-        DrawPanel panel = new DrawPanel(drawGame, 1);
+        DrawPanel panel = new DrawPanel(drawGame);
 
         /* Create a controller for the mouse input */
         new CardDragger(drawGame, panel);

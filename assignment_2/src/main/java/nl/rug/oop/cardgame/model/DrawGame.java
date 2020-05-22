@@ -21,6 +21,7 @@ public class DrawGame extends Observable implements Observer {
     private int turn;
     private int round;
     private int option;
+    private int partGame;
     private boolean cardChosen;
     private boolean goodGuess;
     private boolean start;
@@ -64,6 +65,7 @@ public class DrawGame extends Observable implements Observer {
         turn = 0;
         round = 1;
         option =0;
+        partGame = 1;
         cardChosen = true;
         goodGuess = false;
         start = false;
@@ -109,7 +111,7 @@ public class DrawGame extends Observable implements Observer {
         if(option == 0){
             cardChosen = false;
         }
-        if (option != 0 && movable != null) {
+        if (partGame == 1 && option != 0 && movable != null) {
             start = true;
             Card card = movable.getCard();
             checkIfRight(card);
@@ -119,6 +121,9 @@ public class DrawGame extends Observable implements Observer {
             }
             turn = (turn +1)%4;
             cardChosen = true;
+            if(round == 5){
+                partGame = 2;
+            }
         }
         createMovableCard();
         setChanged();
@@ -190,6 +195,7 @@ public class DrawGame extends Observable implements Observer {
         turn = 0;
         round = 1;
         option =0;
+        partGame = 1;
         cardChosen = true;
         goodGuess = false;
         start = false;
@@ -236,4 +242,7 @@ public class DrawGame extends Observable implements Observer {
         return start;
     }
 
+    public int getPartGame(){
+        return partGame;
+    }
 }

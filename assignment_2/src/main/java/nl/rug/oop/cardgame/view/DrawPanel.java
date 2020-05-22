@@ -66,9 +66,9 @@ public class DrawPanel extends JPanel implements Observer {
     /**
      * Create a new DrawPanel
      */
-    public DrawPanel(DrawGame drawGame, int partGame) {
-        this.partGame = partGame;
+    public DrawPanel(DrawGame drawGame) {
         this.drawGame = drawGame;
+        partGame = 1;
         drawGame.addObserver(this);
         setBackground(BACKGROUND_COLOR);
         setVisible(true);
@@ -148,7 +148,7 @@ public class DrawPanel extends JPanel implements Observer {
 
     private void printAnswers(Graphics g){
         if(drawGame.getCardChosen() == false){
-            g.drawString("CHOOSE AN OPTION FIRST!!!", getWidth()/4+ 10, getHeight()/2 + 40);   
+            g.drawString("CHOOSE AN OPTION FIRST!!!", getWidth()/4+ 10, getHeight()/2 + 50);   
         }
         if(drawGame.isStarted() == true){
             if(drawGame.didHeGuessRight() == true){
@@ -244,6 +244,19 @@ public class DrawPanel extends JPanel implements Observer {
         }
     }
 
+    private void paintDeck2(Graphics g) {
+        BufferedImage cardBackTexture = CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE);
+
+        for (int depth = 0; depth < 5; depth++) {
+            int posY = getHeight()/8 + depth*(getHeight()/8);
+            for(int i =0; i < depth; i++){
+                int posX = getWidth()/4 + (i+1) * ((getWidth()/2)/(depth+1));
+                g.drawImage(cardBackTexture, posX, posY, cardWidth(), cardHeight(), this);
+                g.drawRect(posX, posY, cardWidth(), cardHeight());
+            }
+        }
+    }
+
 
     /**
      * Paint the items that this class alone is responsible for.
@@ -253,6 +266,7 @@ public class DrawPanel extends JPanel implements Observer {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        partGame = drawGame.getPartGame();
         paintAreas(g);
         if(partGame == 1){
             for(int i =0; i < 4; i++){
@@ -263,7 +277,10 @@ public class DrawPanel extends JPanel implements Observer {
             printAnswers(g);
         }
         else{
-
+            for(int i =0; i < 4; i++){
+                paintHand(g,i);
+            }
+            paintDeck2(g);
         }
     }
 
