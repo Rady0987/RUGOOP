@@ -147,6 +147,20 @@ public class DrawGame extends Observable implements Observer {
                 goodGuess = false;
             }
         }
+        if(round == 2 && option ==2){
+            if(newCard.getHeight() > players.get(turn).getHand().top().getHeight()){
+                goodGuess = true;
+            }else{
+                goodGuess = false;
+            }
+        }
+        if(round == 2 && option ==3){
+            if(newCard.getHeight() == players.get(turn).getHand().top().getHeight()){
+                goodGuess = true;
+            }else{
+                goodGuess = false;
+            }
+        }
         /*if(round == 3 && option ==1){
             if((newCard.getHeight() < players.get(turn).getHand().top().getHeight() && 
                 newCard.getHeight() > players.get(turn).getHand().next().getHeight()) ||
