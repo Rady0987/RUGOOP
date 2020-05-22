@@ -18,6 +18,8 @@ import java.awt.image.BufferedImage;
 import java.util.Observer;
 import java.util.Observable;
 
+import java.io.*;
+
 /**
  * View of Draw
  */
@@ -119,23 +121,44 @@ public class DrawPanel extends JPanel implements Observer {
         int round = drawGame.getRound();
         if(round ==1){ 
             g.drawString("Which card do you think it's gonna be?" , getWidth()/4+10, getHeight()/2);
-            g.drawRect(getWidth()/4, getHeight()/2+ 10, getWidth() / 2, 3 * (getHeight()/4));
-            g.drawString("RED", getWidth()/4, 5 * getHeight()/8);
-            g.drawRect(getWidth()/2, getHeight()/2+ 10, 3 * (getWidth() / 4), 3 * (getHeight()/4));
-            g.drawString("BLACK", getWidth()/2, 5 * getHeight()/8);
+            g.drawString("Press option one for: RED", getWidth()/4+ 10, getHeight()/2 + 10);
+            g.drawString("Press option two for: BLACK", getWidth()/4+ 10, getHeight()/2 + 20);
         }
         if(round ==2){
             g.drawString("Is the upcoming card higher or lower than the card you already have?" , getWidth()/4 +10, getHeight()/2);
+            g.drawString("Press option one for: LOWER", getWidth()/4+ 10, getHeight()/2 + 10);
+            g.drawString("Press option two for: HIGHER", getWidth()/4+ 10, getHeight()/2 + 20);
+            g.drawString("Press option three for: THE SAME", getWidth()/4+ 10, getHeight()/2 + 30);
         }
         if(round ==3){
             g.drawString("Is the upcoming card between or outside of the cards you already have?" , getWidth()/4 +10, getHeight()/2);
+            g.drawString("Press option one for: BETWEEN", getWidth()/4+ 10, getHeight()/2 + 10);
+            g.drawString("Press option two for: OUTSIDE", getWidth()/4+ 10, getHeight()/2 + 20);
+            g.drawString("Press option three for: THE SAME", getWidth()/4+ 10, getHeight()/2 + 30);
         }
         if(round ==4){
             g.drawString("Do you already have the card or not?" , getWidth()/4 + 10, getHeight()/2);
+            g.drawString("Press option one for: ALREADY HAVE IT", getWidth()/4+ 10, getHeight()/2 + 10);
+            g.drawString("Press option two for: I DO NOT HAVE IT", getWidth()/4+ 10, getHeight()/2 + 20);
+            g.drawString("Press option three for: I DO NOT HAVE IT, AND IT IS THE LAST KIND I NEED TO HAVE FOUR DIFFERENT KIND OF CARDS", getWidth()/4+ 10, getHeight()/2 + 30);
         }
         g.setColor(Color.BLACK);
 
     }
+
+    private void printAnswers(Graphics g){
+        if(drawGame.getCardChosen() == false){
+            g.drawString("CHOOSE AN OPTION FIRST!!!", getWidth()/4+ 10, getHeight()/2 + 40);   
+        }
+        if(drawGame.isStarted() == true){
+            if(drawGame.didHeGuessRight() == true){
+                g.drawString("This was right!", getWidth()/4+ 10, getHeight()/2 + 40);
+            } else{
+                g.drawString("Unfortunately, you were wrong!", getWidth()/4+ 10, getHeight()/2 + 40);
+            }
+        }
+    }
+
 
     /**
      * Get the scaled spacing between edges and cards
@@ -221,6 +244,7 @@ public class DrawPanel extends JPanel implements Observer {
         }
     }
 
+
     /**
      * Paint the items that this class alone is responsible for.
      * <p>
@@ -236,6 +260,7 @@ public class DrawPanel extends JPanel implements Observer {
             }
             paintDeck(g);
             printInformation(g);
+            printAnswers(g);
         }
         else{
 

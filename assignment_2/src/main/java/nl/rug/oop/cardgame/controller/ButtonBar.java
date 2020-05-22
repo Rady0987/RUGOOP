@@ -2,6 +2,10 @@ package cardgame.controller;
 
 import cardgame.controller.buttons.DrawButton;
 import cardgame.controller.buttons.ResetButton;
+import cardgame.controller.buttons.ButtonOne;
+import cardgame.controller.buttons.ButtonTwo;
+import cardgame.controller.buttons.ButtonThree;
+
 import cardgame.model.DrawGame;
 
 import javax.swing.JMenuBar;
@@ -19,6 +23,9 @@ public class ButtonBar extends JMenuBar {
     public ButtonBar(DrawGame drawGame) {
         add(new DrawButton(drawGame));
         add(new ResetButton(drawGame));
+        add(new ButtonOne(drawGame));
+        add(new ButtonTwo(drawGame));
+        add(new ButtonThree(drawGame));
     }
 
 }

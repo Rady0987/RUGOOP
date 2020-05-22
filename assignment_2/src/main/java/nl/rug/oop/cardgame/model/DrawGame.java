@@ -20,8 +20,10 @@ public class DrawGame extends Observable implements Observer {
     private ArrayList<Player> players;
     private int turn;
     private int round;
-    private int button;
+    private int option;
+    private boolean cardChosen;
     private boolean goodGuess;
+    private boolean start;
 
     /**
      * Create a deck with all cards in Card
@@ -61,6 +63,10 @@ public class DrawGame extends Observable implements Observer {
         }
         turn = 0;
         round = 1;
+        option =0;
+        cardChosen = true;
+        goodGuess = false;
+        start = false;
     }
 
     /**
@@ -97,39 +103,51 @@ public class DrawGame extends Observable implements Observer {
     }
 
     /**
-     * Draw a card and put it on the discard pile
+     * Draw a card and put it on the hand
      */
     public void move() {
-        if (movable != null) {
+        if(option == 0){
+            cardChosen = false;
+        }
+        if (option != 0 && movable != null) {
+            start = true;
             Card card = movable.getCard();
             checkIfRight(card);
             players.get(turn).getHand().put(card);
+            if( turn == 3){
+                ++round;
+            }
+            turn = (turn +1)%4;
+            cardChosen = true;
         }
         createMovableCard();
         setChanged();
         notifyObservers();
-        if( turn == 3){
-            ++round;
-        }
-        turn = (turn +1)%4;
     }
 
     public void checkIfRight(Card newCard){
-        if(round == 1 && button == 1){
+        if(round == 1 && option == 1){
             if(newCard.getColourInt() == 0){
                 goodGuess = true;
             }else{
                 goodGuess = false;
             }
         }
-        if(round == 2 && button ==1){
+        if(round == 1 & option == 2){
+            if(newCard.getColourInt() == 1){
+                goodGuess = true;
+            }else{
+                goodGuess = false;
+            }
+        }
+        if(round == 2 && option ==1){
             if(newCard.getHeight() < players.get(turn).getHand().top().getHeight()){
                 goodGuess = true;
             }else{
                 goodGuess = false;
             }
         }
-        /*if(round == 3 && button ==1){
+        /*if(round == 3 && option ==1){
             if((newCard.getHeight() < players.get(turn).getHand().top().getHeight() && 
                 newCard.getHeight() > players.get(turn).getHand().next().getHeight()) ||
                 (newCard.getHeight() > players.get(turn).getHand().top().getHeight() && 
@@ -139,6 +157,7 @@ public class DrawGame extends Observable implements Observer {
                 goodGuess = false;
             }
         } */
+        option = 0;
     }
 
     /**
@@ -154,6 +173,12 @@ public class DrawGame extends Observable implements Observer {
         }
         setChanged();
         notifyObservers();
+        turn = 0;
+        round = 1;
+        option =0;
+        cardChosen = true;
+        goodGuess = false;
+        start = false;
     }
 
     /**
@@ -173,8 +198,28 @@ public class DrawGame extends Observable implements Observer {
         return round;
     }
 
-    public void firstButtonPressed(){
-        button = 1;
+    public void optionOneChosen(){
+        option = 1;
+    }
+
+    public void optionTwoChosen(){
+        option = 2;
+    }
+
+    public void optionThreeChosen(){
+        option = 3;
+    }
+
+    public boolean getCardChosen(){
+        return cardChosen;
+    }
+
+    public boolean didHeGuessRight(){
+        return goodGuess;
+    }
+
+    public boolean isStarted(){
+        return start;
     }
 
 }
