@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="27a6b59b-e8af-4c13-9464-f1535f61bcc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cardgame.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/ButtonBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/ButtonBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/CardDragger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/CardDragger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/actions/ChooseActionOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/actions/ChooseActionOne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/actions/ChooseActionThree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/actions/ChooseActionThree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/actions/ChooseActionTwo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/actions/ChooseActionTwo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/actions/DrawAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/actions/DrawAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/actions/ResetAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/actions/ResetAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/buttons/ButtonOne.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/buttons/ButtonOne.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/buttons/ButtonThree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/buttons/ButtonThree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/buttons/ButtonTwo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/buttons/ButtonTwo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/buttons/DrawButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/buttons/DrawButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/buttons/ResetButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/controller/buttons/ResetButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/DrawGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/card/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/card/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/card/MovableCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/card/MovableCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/deck/AbstractDeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/deck/AbstractDeck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/deck/CompleteDeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/deck/CompleteDeck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/deck/DoubleDeck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/model/deck/DoubleDeck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/util/Emptiable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/util/Emptiable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/util/Sized.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/util/Sized.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/view/DrawFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/view/DrawFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/view/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/view/DrawPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/view/textures/CardBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/view/textures/CardBack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/view/textures/CardBackTextures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/view/textures/CardBackTextures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/view/textures/CardTextures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/rug/oop/cardgame/view/textures/CardTextures.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1cHKywzfirWi4gZhyGIep1tWcH3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="nl.rug.oop.cardgame.Main" />
+      <module name="cardgame" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nl.rug.oop.cardgame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="27a6b59b-e8af-4c13-9464-f1535f61bcc6" name="Default Changelist" comment="" />
+      <created>1590180336638</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590180336638</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="693" y="133" width="582" height="839" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590203115503">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="693" y="133" width="582" height="839" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1590203115503" />
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1590180369061">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1590180369061" />
+    <state width="1807" height="179" key="GridCell.Tab.0.bottom" timestamp="1590206285710">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="179" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1590206285710" />
+    <state width="1807" height="179" key="GridCell.Tab.0.center" timestamp="1590206285709">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="179" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1590206285709" />
+    <state width="1807" height="179" key="GridCell.Tab.0.left" timestamp="1590206285709">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="179" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1590206285709" />
+    <state width="1807" height="179" key="GridCell.Tab.0.right" timestamp="1590206285710">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="179" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1590206285710" />
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1590205592333">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1590205592333" />
+  </component>
+</project>
