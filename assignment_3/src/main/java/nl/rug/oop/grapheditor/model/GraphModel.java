@@ -4,8 +4,10 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
 import java.util.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class GraphModel {
+public class GraphModel extends Observable implements Observer {
    private ArrayList<Node> Nodes;
    private ArrayList<Edge> Edges;
 
@@ -105,4 +107,17 @@ public class GraphModel {
          }
       }
    }
+
+   public void optionOneChosen(){
+      
+   }
+
+   /**
+     * Updates the view
+   */
+    @Override
+    public void update(Observable observable, Object message) {
+        setChanged();
+        notifyObservers();
+    }
 }
