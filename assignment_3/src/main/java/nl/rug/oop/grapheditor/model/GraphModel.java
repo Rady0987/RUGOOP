@@ -46,6 +46,22 @@ public class GraphModel extends Observable implements Observer {
       }
    }
 
+   public Node getNode(int index){
+      return Nodes.get(index);
+   }
+
+   public int getNodeListSize(){
+      return Nodes.size();
+   }
+
+   public Edge getEdge(int index){
+      return Edges.get(index);
+   }
+
+   public int getEdgeListSize(){
+      return Edges.size();
+   }
+
    public void saveGraph() {
       String ls = System.getProperty("line.separator");
       JFileChooser chooser = new JFileChooser();

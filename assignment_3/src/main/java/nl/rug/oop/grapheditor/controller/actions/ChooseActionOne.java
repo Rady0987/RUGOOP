@@ -28,7 +28,7 @@ public class ChooseActionOne extends AbstractAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        //game.optionOneChosen();
+        graph.optionOneChosen();
     }
 
 }

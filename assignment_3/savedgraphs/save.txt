@@ -1,7 +1,7 @@
 4 2 
-0 0 5 5 one 
-0 0 5 5 two 
-0 0 5 5 three 
-0 0 5 5 four 
+0 0 50 50 one 
+0 0 50 50 two 
+0 0 50 50 three 
+0 0 50 50 four 
 0 1 
 1 2 
