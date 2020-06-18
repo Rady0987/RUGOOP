@@ -1,6 +1,7 @@
 nl/rug/oop/grapheditor/view/DrawFrame.class
 nl/rug/oop/grapheditor/model/Node.class
 nl/rug/oop/grapheditor/model/GraphModel.class
+nl/rug/oop/grapheditor/controller/SelectionController.class
 nl/rug/oop/grapheditor/controller/actions/ChooseActionOne.class
 nl/rug/oop/grapheditor/GraphEditor.class
 nl/rug/oop/grapheditor/model/Edge.class

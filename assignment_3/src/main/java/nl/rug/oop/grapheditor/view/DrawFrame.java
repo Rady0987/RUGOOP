@@ -18,6 +18,8 @@ public class DrawFrame extends JFrame {
         /* Create a view for the game */
         DrawPanel panel = new DrawPanel(graph);
 
+        /* Create a controller for the mouse input */
+        new SelectionController(graph, panel);
         /* Add the view to the frame */
         add(panel);
         /* Set the size of the frame */

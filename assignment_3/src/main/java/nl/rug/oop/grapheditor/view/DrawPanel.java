@@ -14,6 +14,8 @@ public class DrawPanel extends JPanel implements Observer {
     private int startWidth = 1300;
     private int startHeight = 900;
     private GraphModel graph;
+    private int nodeSelected;
+
 
     /**
      * Create a new DrawPanel
@@ -24,6 +26,7 @@ public class DrawPanel extends JPanel implements Observer {
         setBackground(Color.darkGray);
         setVisible(true);
         setOpaque(true);
+        nodeSelected = -1;
     }
 
     /**
@@ -33,10 +36,13 @@ public class DrawPanel extends JPanel implements Observer {
         int sizeOfNodes = graph.getNodeListSize();
         for(int i = 0; i < sizeOfNodes; i++){  
             g.setColor(Color.lightGray);
-            int xVal = graph.getNode(i).x * getWidth()/startWidth;
-            int yVal = graph.getNode(i).y * getHeight()/startHeight;
-            int widthVal = graph.getNode(i).width * getWidth()/startWidth;
-            int heightVal = graph.getNode(i).height * getHeight()/startHeight;
+            if(nodeSelected == i){
+                g.setColor(Color.RED);
+            }
+            int xVal = (int) (graph.getNode(i).x * getRatioX());
+            int yVal = (int) (graph.getNode(i).y * getRatioY());
+            int widthVal = (int) (graph.getNode(i).width * getRatioX());
+            int heightVal = (int)(graph.getNode(i).height * getRatioY());
             g.fillRect(xVal, yVal, widthVal, heightVal);
             g.setColor(Color.black);
             g.drawRect(xVal, yVal, widthVal, heightVal);
@@ -58,7 +64,6 @@ public class DrawPanel extends JPanel implements Observer {
     private void paintEdges(Graphics g) {
         int sizeOfEdges = graph.getEdgeListSize();
         g.setColor(Color.lightGray);
-        //g.setStroke(new BasicStroke(3 * getWidth()/startWidth));
         for(int i = 0; i < sizeOfEdges; i++){  
             int node1 = graph.getEdge(i).getNodeOne();
             int node2 = graph.getEdge(i).getNodeTwo();
@@ -94,6 +99,19 @@ public class DrawPanel extends JPanel implements Observer {
      */
     @Override
     public void update(Observable observed, Object message) {
+        repaint();
+    }
+
+    public double getRatioX(){
+        return (double)getWidth()/startWidth;
+    }
+
+    public double getRatioY(){
+        return (double)getHeight()/startHeight;
+    }
+
+    public void selectNode(int i){
+        nodeSelected = i;
         repaint();
     }
 
