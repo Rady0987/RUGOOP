@@ -17,7 +17,7 @@ public class ChooseActionOne extends AbstractAction {
      * @param graph The option one
      */
     public ChooseActionOne(GraphModel graph) {
-        super("Option 1");
+        super("New node");
         this.graph = graph;
     }
 

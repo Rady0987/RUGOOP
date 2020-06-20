@@ -12,6 +12,7 @@ public class SelectionController extends MouseInputAdapter {
 
     private GraphModel graph;
     private DrawPanel panel;
+    private static int selectedNode;
 
     /**
      * Create a new selection controller that receives mouse events from the DrawPanel
@@ -38,19 +39,47 @@ public class SelectionController extends MouseInputAdapter {
         int sizeOfNodes = graph.getNodeListSize();
         boolean nodeSelected = false;
         int i=0;
-        while(i < sizeOfNodes && !nodeSelected){ 
-            double xVal = graph.getNode(i).x * panel.getRatioX();
-            double yVal = graph.getNode(i).y * panel.getRatioY();
-            double widthVal = graph.getNode(i).width * panel.getRatioX();
-            double heightVal = graph.getNode(i).height * panel.getRatioY();
+        while(i < sizeOfNodes && !nodeSelected){
+            double xVal = graph.getNode(i).getX() * panel.getRatioX();
+            double yVal = graph.getNode(i).getY() * panel.getRatioY();
+            double widthVal = graph.getNode(i).getWidth() * panel.getRatioX();
+            double heightVal = graph.getNode(i).getHeight() * panel.getRatioY();
             if (event.getX() >= xVal && event.getX() <= (xVal + widthVal) &&
-                event.getY() >= yVal && event.getY() <= (yVal + heightVal)
-            ){
+                event.getY() >= yVal && event.getY() <= (yVal + heightVal)){
                 nodeSelected = true;
                 panel.selectNode(i);
+                selectedNode = i;
             }
             i++;
         }
     }
+    /**
+     *
+     *
+     * @param event The MouseEvent needed to locate the position of the cursor
+     */
+    @Override
+    public void mouseReleased(MouseEvent event) {
 
+    }
+
+    /**
+     * If a card is selected it is moved relative to the positions the mouse
+     * was first pressed.
+     *
+     * @param event The MouseEvent needed to locate the position of the cursor
+     */
+    @Override
+    public void mouseDragged(MouseEvent event) {
+        super.mouseDragged(event);
+        int halfWidth = graph.getNode(selectedNode).getWidth() * (int)panel.getRatioX() / 2;
+        int halfHeight = graph.getNode(selectedNode).getHeight() * (int)panel.getRatioY() / 2;
+
+        graph.getNode(selectedNode).move(event.getX() , event.getY() );
+
+    }
+
+    public static int getSelectedNode() {
+        return selectedNode;
+    }
 }

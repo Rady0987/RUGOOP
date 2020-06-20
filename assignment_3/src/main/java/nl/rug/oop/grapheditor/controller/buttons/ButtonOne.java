@@ -20,7 +20,7 @@ public class ButtonOne extends JButton {
         setVerticalTextPosition(AbstractButton.CENTER);
         setHorizontalTextPosition(AbstractButton.CENTER);
         setMnemonic(KeyEvent.VK_S);
-        setToolTipText("Choose option number one");
+        setToolTipText("Add a node");
     }
 
     /**

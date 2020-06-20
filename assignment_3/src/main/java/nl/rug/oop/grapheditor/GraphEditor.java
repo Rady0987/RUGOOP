@@ -1,6 +1,7 @@
 package nl.rug.oop.grapheditor;
 
 import nl.rug.oop.grapheditor.model.GraphModel;
+import nl.rug.oop.grapheditor.model.IO.Saveload;
 import nl.rug.oop.grapheditor.view.*;
 
 public class GraphEditor {
@@ -15,6 +16,6 @@ public class GraphEditor {
 //      model.addEdge(1,2);
       /* Create the frame */
       new DrawFrame(model);
-      model.saveGraph();
+      model.save();
    }
 }

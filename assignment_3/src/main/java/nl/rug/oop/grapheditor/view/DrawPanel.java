@@ -1,5 +1,6 @@
 package nl.rug.oop.grapheditor.view;
 
+import nl.rug.oop.grapheditor.controller.SelectionController;
 import nl.rug.oop.grapheditor.model.GraphModel;
 import javax.swing.JPanel;
 import java.awt.*;
@@ -39,17 +40,17 @@ public class DrawPanel extends JPanel implements Observer {
             if(nodeSelected == i){
                 g.setColor(Color.RED);
             }
-            int xVal = (int) (graph.getNode(i).x * getRatioX());
-            int yVal = (int) (graph.getNode(i).y * getRatioY());
-            int widthVal = (int) (graph.getNode(i).width * getRatioX());
-            int heightVal = (int)(graph.getNode(i).height * getRatioY());
+            int xVal = (int) (graph.getNode(i).getX() * getRatioX());
+            int yVal = (int) (graph.getNode(i).getY() * getRatioY());
+            int widthVal = (int) (graph.getNode(i).getWidth() * getRatioX());
+            int heightVal = (int)(graph.getNode(i).getHeight() * getRatioY());
             g.fillRect(xVal, yVal, widthVal, heightVal);
             g.setColor(Color.black);
             g.drawRect(xVal, yVal, widthVal, heightVal);
             int sizeText = 300;
             g.setFont (new Font ("Courier", Font.BOLD, sizeText));
             int width = g.getFontMetrics().stringWidth(graph.getNode(i).name);
-            while( width > ((3 * widthVal)/4)){
+            while(width > ((3 * widthVal)/4)){
                 sizeText--;
                 g.setFont(new Font ("Courier", Font.BOLD, sizeText));
                 width = g.getFontMetrics().stringWidth(graph.getNode(i).name);  
@@ -68,15 +69,15 @@ public class DrawPanel extends JPanel implements Observer {
             int node1 = graph.getEdge(i).getNodeOne();
             int node2 = graph.getEdge(i).getNodeTwo();
 
-            int x1 = graph.getNode(node1).x * getWidth()/startWidth;
-            x1 += (graph.getNode(node1).width * getWidth()/startWidth)/2;
-            int y1 = graph.getNode(node1).y * getHeight()/startHeight;
-            y1 += (graph.getNode(node1).height * getHeight()/startHeight)/2;
+            int x1 = graph.getNode(node1).getX() * getWidth()/startWidth;
+            x1 += (graph.getNode(node1).getWidth() * getWidth()/startWidth)/2;
+            int y1 = graph.getNode(node1).getY() * getHeight()/startHeight;
+            y1 += (graph.getNode(node1).getHeight() * getHeight()/startHeight)/2;
 
-            int x2 = graph.getNode(node2).x * getWidth()/startWidth;
-            x2 += (graph.getNode(node2).width * getWidth()/startWidth)/2;
-            int y2 = graph.getNode(node2).y * getHeight()/startHeight;
-            y2 += (graph.getNode(node2).height * getHeight()/startHeight)/2;
+            int x2 = graph.getNode(node2).getX() * getWidth()/startWidth;
+            x2 += (graph.getNode(node2).getWidth() * getWidth()/startWidth)/2;
+            int y2 = graph.getNode(node2).getY() * getHeight()/startHeight;
+            y2 += (graph.getNode(node2).getHeight() * getHeight()/startHeight)/2;
 
             g.drawLine(x1, y1, x2, y2);
         }
