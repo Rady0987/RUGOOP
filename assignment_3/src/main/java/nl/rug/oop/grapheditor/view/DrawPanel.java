@@ -47,7 +47,7 @@ public class DrawPanel extends JPanel implements Observer {
             g.fillRect(xVal, yVal, widthVal, heightVal);
             g.setColor(Color.black);
             g.drawRect(xVal, yVal, widthVal, heightVal);
-            int sizeText = 300;
+            int sizeText = 200;
             g.setFont (new Font ("Courier", Font.BOLD, sizeText));
             int width = g.getFontMetrics().stringWidth(graph.getNode(i).name);
             while(width > ((3 * widthVal)/4)){
@@ -113,6 +113,11 @@ public class DrawPanel extends JPanel implements Observer {
 
     public void selectNode(int i){
         nodeSelected = i;
+        repaint();
+    }
+
+    public void deselectNode() {
+        nodeSelected = -1;
         repaint();
     }
 

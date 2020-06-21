@@ -1,6 +1,7 @@
 package nl.rug.oop.grapheditor.view;
 
 import nl.rug.oop.grapheditor.controller.*;
+import nl.rug.oop.grapheditor.controller.buttons.ButtonOne;
 import nl.rug.oop.grapheditor.model.GraphModel;
 
 import javax.swing.*;
@@ -14,8 +15,7 @@ public class DrawFrame extends JFrame {
         /* Make sure our program exits when we close the frame */
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /* Add a menu to the frame */
-        setJMenuBar(new ButtonBar(graph));
-        /* Create a view for the game */
+        setJMenuBar((new ButtonBar(graph)));
         DrawPanel panel = new DrawPanel(graph);
 
         /* Create a controller for the mouse input */

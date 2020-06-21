@@ -13,7 +13,7 @@ public class SelectionController extends MouseInputAdapter {
     private GraphModel graph;
     private DrawPanel panel;
     private static int selectedNode;
-
+    boolean nodeSelected = false;
     /**
      * Create a new selection controller that receives mouse events from the DrawPanel
      * supplied to this constructor
@@ -37,7 +37,6 @@ public class SelectionController extends MouseInputAdapter {
     @Override
     public void mouseClicked(MouseEvent event) {
         int sizeOfNodes = graph.getNodeListSize();
-        boolean nodeSelected = false;
         int i=0;
         while(i < sizeOfNodes && !nodeSelected){
             double xVal = graph.getNode(i).getX() * panel.getRatioX();
@@ -60,6 +59,8 @@ public class SelectionController extends MouseInputAdapter {
      */
     @Override
     public void mouseReleased(MouseEvent event) {
+        nodeSelected = false;
+        panel.deselectNode();
 
     }
 
@@ -72,11 +73,11 @@ public class SelectionController extends MouseInputAdapter {
     @Override
     public void mouseDragged(MouseEvent event) {
         super.mouseDragged(event);
-        int halfWidth = graph.getNode(selectedNode).getWidth() * (int)panel.getRatioX() / 2;
-        int halfHeight = graph.getNode(selectedNode).getHeight() * (int)panel.getRatioY() / 2;
-
-        graph.getNode(selectedNode).move(event.getX() , event.getY() );
-
+        if (nodeSelected) {
+            double halfWidth = graph.getNode(selectedNode).getWidth() * panel.getRatioX() / 2;
+            double halfHeight = graph.getNode(selectedNode).getHeight() * panel.getRatioY() / 2;
+            graph.move(selectedNode, (int)(event.getX() - halfWidth), (int)(event.getY() - halfHeight));
+        }
     }
 
     public static int getSelectedNode() {

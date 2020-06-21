@@ -11,6 +11,19 @@ import java.util.Scanner;
 
 public class Saveload {
 
+   private static String extensionCheck(String fileName) {
+      String extension;
+      if (fileName.length() > 4) {
+         extension = fileName.substring(fileName.length() - 4);
+      } else {
+         return fileName + ".txt";
+      }
+      if (!".txt".equals(extension)) {
+         fileName += ".txt";
+      }
+      return fileName;
+   }
+
    public static void saveGraph(ArrayList<Edge> Edges, ArrayList<Node> Nodes) {
       String ls = System.getProperty("line.separator");
       JFileChooser chooser = new JFileChooser();
@@ -18,11 +31,11 @@ public class Saveload {
       chooser.setFileFilter(filter);
       chooser.setDialogTitle("Save");
       chooser.setCurrentDirectory(new File("savedgraphs"));
-      int returnVal = chooser.showSaveDialog(null);
+      int returnVal = chooser.showDialog(null, "Save");
       if (returnVal == JFileChooser.APPROVE_OPTION) {
          File file = chooser.getSelectedFile();
          chooser.setCurrentDirectory(file);
-         try (PrintWriter w = new PrintWriter(new BufferedWriter(new FileWriter(chooser.getCurrentDirectory() + File.separator + chooser.getSelectedFile().getName() + ".txt", false)))) {
+         try (PrintWriter w = new PrintWriter(new BufferedWriter(new FileWriter(extensionCheck(chooser.getCurrentDirectory() + File.separator + chooser.getSelectedFile().getName()), false)))) {
             w.printf("%d %d %s", Nodes.size(), Edges.size(), ls);
             for (Node i : Nodes) {
                w.printf("%d %d %d %d %s %s", i.getX(), i.getY(), i.getHeight(), i.getWidth(), i.name, ls);

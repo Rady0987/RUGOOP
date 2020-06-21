@@ -16,4 +16,12 @@ public class Edge {
    public int getNodeTwo() {
       return nodeTwo;
    }
+
+   public void decNodeOneIndex() {
+      nodeOne--;
+   }
+
+   public void decNodeTwoIndex() {
+      nodeTwo--;
+   }
 }

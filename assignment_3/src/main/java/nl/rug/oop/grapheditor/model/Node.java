@@ -22,15 +22,6 @@ public class Node extends Observable {
       System.out.println(name);
    }
 
-   public void move(int x, int y) {
-      this.x = x;
-      this.y = y;
-
-      /* Let the Observers know that the position of the Box has changed, which will update the View */
-      setChanged();
-      notifyObservers();
-   }
-
    public int getX() {
       return x;
    }
@@ -46,4 +37,13 @@ public class Node extends Observable {
    public int getWidth() {
       return width;
    }
+
+   public void setX(int x) {
+      this.x = x;
+   }
+
+   public void setY(int y) {
+      this.y = y;
+   }
+
 }

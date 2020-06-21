@@ -10,10 +10,8 @@ public class GraphModel extends Observable implements Observer {
    private static ArrayList<Edge> Edges;
 
    public GraphModel() {
-      Nodes = new ArrayList<Node>();
-      Edges = new ArrayList<Edge>();
-      Saveload.loadGraph();
-
+      Nodes = new ArrayList<>();
+      Edges = new ArrayList<>();
    }
 
    public void removeEdge(int index) {
@@ -23,26 +21,57 @@ public class GraphModel extends Observable implements Observer {
    public static void addEdge(int nodeOne, int nodeTwo) {
       Edge edge = new Edge(nodeOne, nodeTwo);
       Edges.add(edge);
+      System.out.println("plus 1 edge");
    }
 
 
    public static void addNode(String name, int x, int y, int height, int width) {
       Node node = new Node(name, x, y, width, height);
       Nodes.add(node);
-      //node.printName();
+
    }
 
    public void removeNode(int index) {
       Nodes.remove(index);
-      for (Edge i : Edges) {
-         if (i.getNodeOne() == index || i.getNodeTwo() == index)
+      for (int i = 0;  i < Edges.size(); i++) {
+         if (Edges.get(i).getNodeOne() == index || Edges.get(i).getNodeTwo() == index)
             Edges.remove(i);
+      }
+      for (Edge i : Edges) {
+         if (i.getNodeOne() > index)
+            i.decNodeOneIndex();
+         if (i.getNodeTwo() > index)
+            i.decNodeTwoIndex();
       }
    }
 
-   public void save() {
+   public void newGraph() {
+      Saveload.saveGraph(Edges, Nodes);
+      for(int i = Edges.size() - 1;  i >= 0; i--) {
+         Edges.remove(i);
+      }
+      for(int i =Nodes.size() - 1;  i >= 0; i--) {
+         Nodes.remove(i);
+      }
+      setChanged();
+      notifyObservers();
+   }
+
+   public void saveGraph() {
       Saveload.saveGraph(Edges, Nodes);
    }
+
+   public void loadGraph() {
+      Saveload.loadGraph();
+      setChanged();
+      notifyObservers();
+   }
+
+   public void exit() {
+      Saveload.saveGraph(Edges, Nodes);
+      System.exit(0);
+   }
+
 
    public Node getNode(int index){
       return Nodes.get(index);
@@ -67,7 +96,7 @@ public class GraphModel extends Observable implements Observer {
    }
 
    public void optionTwoChosen(){
-
+      //addEdge();
       setChanged();
       notifyObservers();
    }
@@ -92,5 +121,13 @@ public class GraphModel extends Observable implements Observer {
         notifyObservers();
     }
 
+   public void move(int index, int x, int y) {
+      Nodes.get(index).setX(x);
+      Nodes.get(index).setY(y);
+
+      /* Let the Observers know that the position of the Box has changed, which will update the View */
+      setChanged();
+      notifyObservers();
+   }
 
 }
