@@ -1,17 +1,20 @@
 package nl.rug.oop.grapheditor.controller.actions;
 
 import nl.rug.oop.grapheditor.model.GraphModel;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Class of remove node action
+ */
 public class ChooseActionThree extends AbstractAction {
    private GraphModel graph;
 
    /**
-    * Creates not an action yet
+    * Constructor.
+    * Creates an action to remove a node
     *
-    * @param graph The option one
+    * @param graph GraphModel
     */
    public ChooseActionThree(GraphModel graph) {
       super("Remove node");
@@ -19,7 +22,7 @@ public class ChooseActionThree extends AbstractAction {
    }
 
    /**
-    * Not an action yet
+    * Calls the corresponding method from model
     *
     * @param e ActionEvent that is raised from the user action
     */

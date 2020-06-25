@@ -6,7 +6,7 @@ import javax.swing.event.MouseInputAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Implements the ability to select nodes
+ * Class SelectionController that implements the ability to select nodes
  */
 public class SelectionController extends MouseInputAdapter {
 
@@ -14,7 +14,9 @@ public class SelectionController extends MouseInputAdapter {
     private DrawPanel panel;
     private static int selectedNode;
     boolean nodeSelected = false;
+
     /**
+     * Constructor.
      * Create a new selection controller that receives mouse events from the DrawPanel
      * supplied to this constructor
      *
@@ -37,7 +39,7 @@ public class SelectionController extends MouseInputAdapter {
     @Override
     public void mouseClicked(MouseEvent event) {
         int sizeOfNodes = graph.getNodeListSize();
-        int i=0;
+        int i = 0;
         while(i < sizeOfNodes && !nodeSelected){
             double xVal = graph.getNode(i).getX() * panel.getRatioX();
             double yVal = graph.getNode(i).getY() * panel.getRatioY();
@@ -46,22 +48,22 @@ public class SelectionController extends MouseInputAdapter {
             if (event.getX() >= xVal && event.getX() <= (xVal + widthVal) &&
                 event.getY() >= yVal && event.getY() <= (yVal + heightVal)){
                 nodeSelected = true;
-                panel.selectNode(i);
+                graph.setSelectedNode(i);
                 selectedNode = i;
             }
             i++;
         }
     }
+
     /**
-     *
+     * Method that resets the variables that keep the selected node.
      *
      * @param event The MouseEvent needed to locate the position of the cursor
      */
     @Override
     public void mouseReleased(MouseEvent event) {
         nodeSelected = false;
-        panel.deselectNode();
-
+        graph.setSelectedNodeNull();
     }
 
     /**
@@ -80,7 +82,18 @@ public class SelectionController extends MouseInputAdapter {
         }
     }
 
-    public static int getSelectedNode() {
-        return selectedNode;
+
+    /**
+     * Method that triggers the mouse movements.
+     *
+     * @param event The MouseEvent needed to locate the position of the cursor
+     */
+    @Override
+    public void mouseMoved(MouseEvent event){
+        super.mouseMoved(event);
+        if (graph.getSelectedNode() == -1 && graph.getaddEdgeButton() ){
+            graph.setMouseLocation(event.getX(), event.getY());
+        }
     }
+
 }

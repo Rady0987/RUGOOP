@@ -5,14 +5,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 /**
- * Represents not an action yet
+ * Class of a new node action
  */
 public class ChooseActionOne extends AbstractAction {
 
     private GraphModel graph;
 
     /**
-     * Creates not an action yet
+     * Constructor.
+     * Creates an action to make a new node
      *
      * @param graph The option one
      */
@@ -22,7 +23,7 @@ public class ChooseActionOne extends AbstractAction {
     }
 
     /**
-     * Not an action yet
+     * Calls the corresponding method from model
      *
      * @param e ActionEvent that is raised from the user action
      */

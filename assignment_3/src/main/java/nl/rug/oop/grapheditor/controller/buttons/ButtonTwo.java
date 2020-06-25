@@ -2,10 +2,12 @@ package nl.rug.oop.grapheditor.controller.buttons;
 
 import nl.rug.oop.grapheditor.controller.actions.*;
 import nl.rug.oop.grapheditor.model.GraphModel;
-
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * Class of the ButtonOTwo
+ */
 public class ButtonTwo extends JButton{
    /**
     * Initialise the properties of this button
@@ -14,7 +16,8 @@ public class ButtonTwo extends JButton{
       setVerticalTextPosition(AbstractButton.CENTER);
       setHorizontalTextPosition(AbstractButton.CENTER);
       setMnemonic(KeyEvent.VK_S);
-      setToolTipText("Add an edge");
+      setToolTipText("Select the first node, then press this button");
+
    }
 
    /**

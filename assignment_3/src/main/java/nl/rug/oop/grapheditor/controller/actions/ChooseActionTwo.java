@@ -4,14 +4,18 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Class of new edge action
+ */
 public class ChooseActionTwo extends AbstractAction {
 
    private GraphModel graph;
 
    /**
-    * Creates not an action yet
+    * Constructor.
+    * Creates an action to make a new edge
     *
-    * @param graph The option one
+    * @param graph GraphModel
     */
    public ChooseActionTwo(GraphModel graph) {
       super("New edge");
@@ -19,7 +23,7 @@ public class ChooseActionTwo extends AbstractAction {
    }
 
    /**
-    * Not an action yet
+    * Calls the corresponding method from model
     *
     * @param e ActionEvent that is raised from the user action
     */

@@ -1,24 +1,23 @@
 package nl.rug.oop.grapheditor.view;
-
-import nl.rug.oop.grapheditor.controller.SelectionController;
 import nl.rug.oop.grapheditor.model.GraphModel;
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Observer;
 import java.util.Observable;
 
 /**
- * View of Draw
+ * DrawPanel class.
  */
 public class DrawPanel extends JPanel implements Observer {
 
     private int startWidth = 1300;
     private int startHeight = 900;
     private GraphModel graph;
-    private int nodeSelected;
-
 
     /**
+     * Constructor
      * Create a new DrawPanel
      */
     public DrawPanel(GraphModel graph) {
@@ -27,45 +26,50 @@ public class DrawPanel extends JPanel implements Observer {
         setBackground(Color.darkGray);
         setVisible(true);
         setOpaque(true);
-        nodeSelected = -1;
     }
 
     /**
-     * Paint the nodes
+     * Method that paints the nodes
+     *
+     * @param g Graphics component
      */
     private void paintNodes(Graphics g) {
         int sizeOfNodes = graph.getNodeListSize();
         for(int i = 0; i < sizeOfNodes; i++){  
             g.setColor(Color.lightGray);
-            if(nodeSelected == i){
+            if(graph.getSelectedNode() == i){
                 g.setColor(Color.RED);
             }
             int xVal = (int) (graph.getNode(i).getX() * getRatioX());
             int yVal = (int) (graph.getNode(i).getY() * getRatioY());
             int widthVal = (int) (graph.getNode(i).getWidth() * getRatioX());
             int heightVal = (int)(graph.getNode(i).getHeight() * getRatioY());
+
             g.fillRect(xVal, yVal, widthVal, heightVal);
             g.setColor(Color.black);
             g.drawRect(xVal, yVal, widthVal, heightVal);
-            int sizeText = 200;
+            int sizeText = 150;
             g.setFont (new Font ("Courier", Font.BOLD, sizeText));
             int width = g.getFontMetrics().stringWidth(graph.getNode(i).name);
+            int height = g.getFontMetrics().getHeight();
+
             while(width > ((3 * widthVal)/4)){
                 sizeText--;
                 g.setFont(new Font ("Courier", Font.BOLD, sizeText));
                 width = g.getFontMetrics().stringWidth(graph.getNode(i).name);  
             }
-            g.drawString(graph.getNode(i).name, xVal + widthVal/8, yVal + heightVal/2);
+            g.drawString(graph.getNode(i).name, xVal + widthVal/8, yVal + height/3);
         }
     }
 
     /**
-     * Paint the nodes
+     * Method that paints the edges
+     *
+     * @param g Graphics component
      */
     private void paintEdges(Graphics g) {
-        int sizeOfEdges = graph.getEdgeListSize();
         g.setColor(Color.lightGray);
-        for(int i = 0; i < sizeOfEdges; i++){  
+        for(int i = 0; i < graph.getEdgeListSize(); i++){
             int node1 = graph.getEdge(i).getNodeOne();
             int node2 = graph.getEdge(i).getNodeTwo();
 
@@ -84,6 +88,51 @@ public class DrawPanel extends JPanel implements Observer {
     }
 
     /**
+     * Method that paints a new created edge
+     *
+     * @param g Graphics component
+     */
+    public void paintAddingEdge(Graphics g) {
+        if (graph.getSelectedNode() == -1 && graph.getaddEdgeButton()) {
+            g.setColor(new Color(135, 20, 100));
+            int node = graph.getFirstSelectedNode();
+            int x = graph.getNode(node).getX() * getWidth()/startWidth;
+            x += (graph.getNode(node).getWidth() * getWidth()/startWidth)/2;
+            int y = graph.getNode(node).getY() * getHeight()/startHeight;
+            y += (graph.getNode(node).getHeight() * getHeight()/startHeight)/2;
+
+            Graphics2D g2D = (Graphics2D)g;
+            g2D.setStroke(new BasicStroke(5.0F));
+            g.drawLine(x, y, graph.getMouseX(), graph.getMouseY());
+        }
+    }
+
+    /**
+     * Method that paints a new text box
+     *
+     * @param g Graphics component
+     */
+    public void paintTextBox(Graphics g) {
+        if (graph.isRenameButton() && graph.getSelectedNode() != -1) {
+            int x = (getWidth() - 300);
+            textField textField = new textField(x, 0, graph);
+            textField.setBounds(x, 0, 280, 50);
+            textField.setToolTipText("Rename the selected node.");
+            add(textField);
+            textField.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    super.keyPressed(e);
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        graph.renameSelectedNode(textField.getText());
+                        textField.setVisible(true);
+                    }
+                }
+            });
+        }
+    }
+
+    /**
      * Paint the items that this class alone is responsible for.
      * <p>
      * This method is part of a template method that calls
@@ -91,6 +140,8 @@ public class DrawPanel extends JPanel implements Observer {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        paintTextBox(g);
+        paintAddingEdge(g);
         paintEdges(g);
         paintNodes(g);  
     }
@@ -103,22 +154,18 @@ public class DrawPanel extends JPanel implements Observer {
         repaint();
     }
 
+    /**
+     * Getter for the X coordonate in terms of the screen ratio
+     */
     public double getRatioX(){
         return (double)getWidth()/startWidth;
     }
 
+    /**
+     * Getter for the Y coordonate in terms of the screen ratio
+     */
     public double getRatioY(){
         return (double)getHeight()/startHeight;
-    }
-
-    public void selectNode(int i){
-        nodeSelected = i;
-        repaint();
-    }
-
-    public void deselectNode() {
-        nodeSelected = -1;
-        repaint();
     }
 
 }

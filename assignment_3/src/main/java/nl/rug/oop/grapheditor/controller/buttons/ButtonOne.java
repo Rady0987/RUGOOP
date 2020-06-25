@@ -9,7 +9,7 @@ import javax.swing.AbstractButton;
 import javax.swing.JButton;
 
 /**
- * Button that does nothing yet
+ * Class of the ButtonOne
  */
 public class ButtonOne extends JButton {
 
@@ -20,7 +20,7 @@ public class ButtonOne extends JButton {
         setVerticalTextPosition(AbstractButton.CENTER);
         setHorizontalTextPosition(AbstractButton.CENTER);
         setMnemonic(KeyEvent.VK_S);
-        setToolTipText("Add a node");
+        setToolTipText("Adds a node");
     }
 
     /**

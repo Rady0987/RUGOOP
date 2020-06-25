@@ -2,10 +2,12 @@ package nl.rug.oop.grapheditor.controller.buttons;
 
 import nl.rug.oop.grapheditor.controller.actions.*;
 import nl.rug.oop.grapheditor.model.GraphModel;
-
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * Class of the ButtonThree
+ */
 public class ButtonThree extends JButton{
 
    /**
@@ -15,7 +17,7 @@ public class ButtonThree extends JButton{
       setVerticalTextPosition(AbstractButton.CENTER);
       setHorizontalTextPosition(AbstractButton.CENTER);
       setMnemonic(KeyEvent.VK_S);
-      setToolTipText("Remove node");
+      setToolTipText("Select the node you want to remove, then click this button");
    }
 
    /**

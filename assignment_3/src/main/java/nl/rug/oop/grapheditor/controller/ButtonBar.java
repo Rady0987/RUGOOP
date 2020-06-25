@@ -2,25 +2,30 @@ package nl.rug.oop.grapheditor.controller;
 
 import nl.rug.oop.grapheditor.controller.buttons.*;
 import nl.rug.oop.grapheditor.model.GraphModel;
+import nl.rug.oop.grapheditor.model.UndoRedo.Handler;
 import javax.swing.*;
-
 
 /**
  * Panel with the buttons for the draw-class controllers
  */
 public class ButtonBar extends JMenuBar {
+    private final Handler handler;
+
 
     /**
+     * Constructor
      * Create a new ButtonBar with all the necessary buttons
      *
      * @param graph The graph, passed to the controllers
      */
-    public ButtonBar(GraphModel graph) {
+    public ButtonBar(GraphModel graph, Handler handler ) {
         menus(graph);
+        this.add(Box.createHorizontalGlue());
         add(new ButtonOne(graph));
         add(new ButtonTwo(graph));
         add(new ButtonThree(graph));
         add(new ButtonFour(graph));
+        this.handler = handler;
     }
 
     /**
@@ -36,6 +41,7 @@ public class ButtonBar extends JMenuBar {
         file.add(exitButton(graph));
         add(file);
         JMenu edit = new JMenu("Edit");
+        edit.add(renameButton(graph));
         edit.add(undoButton(graph));
         edit.add(redoButton(graph));
         add(edit);
@@ -92,7 +98,7 @@ public class ButtonBar extends JMenuBar {
      */
     public JMenuItem undoButton(GraphModel graph) {
         JMenuItem undo = new JMenuItem("Undo");
-        //undo.addActionListener(e -> );
+        undo.addActionListener(e -> handler.undo());
         return undo;
     }
 
@@ -103,7 +109,18 @@ public class ButtonBar extends JMenuBar {
      */
     public JMenuItem redoButton(GraphModel graph) {
         JMenuItem redo = new JMenuItem("Redo");
-        //redo.addActionListener(e -> );
+        redo.addActionListener(e -> handler.redo());
+        return redo;
+    }
+
+    /**
+     * Create rename button
+     *
+     * @param graph The graph, passed to the controllers
+     */
+    public JMenuItem renameButton(GraphModel graph) {
+        JMenuItem redo = new JMenuItem("Rename");
+        redo.addActionListener(e -> graph.setRenameButton());
         return redo;
     }
 

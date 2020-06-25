@@ -1,15 +1,17 @@
 package nl.rug.oop.grapheditor.controller.actions;
 
 import nl.rug.oop.grapheditor.model.GraphModel;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-
+/**
+ * Class of remove edge action
+ */
 public class ChooseActionFour extends AbstractAction {
    private GraphModel graph;
 
    /**
-    * Creates not an action yet
+    * Constructor.
+    * Creates an action to remove an edge
     *
     * @param graph The option one
     */
@@ -19,7 +21,7 @@ public class ChooseActionFour extends AbstractAction {
    }
 
    /**
-    * Not an action yet
+    * Calls the corresponding method from model
     *
     * @param e ActionEvent that is raised from the user action
     */
