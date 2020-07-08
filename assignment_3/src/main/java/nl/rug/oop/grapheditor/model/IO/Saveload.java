@@ -3,6 +3,7 @@ package nl.rug.oop.grapheditor.model.IO;
 import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.model.Node;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
@@ -10,53 +11,36 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * SaveLoad class
+ * This class creates saving and loading methods for the graph editor.
  */
 public class Saveload {
 
    /**
-    * Method that checks the extension of the file in which the program saves
+    * This method saves the state of the graph editor.
     *
-    * @param fileName the saving path
+    * @param Edges The array of the edges.
+    * @param Nodes The array of the nodes.
     */
-   private static String extensionCheck(String fileName) {
-      String extension;
-      if (fileName.length() > 4) {
-         extension = fileName.substring(fileName.length() - 4);
-      } else {
-         return fileName + ".txt";
-      }
-      if (!".txt".equals(extension)) {
-         fileName += ".txt";
-      }
-      return fileName;
-   }
-
-   /**
-    * Method that saves the state of the graph
-    *
-    * @param Edges the array with the edges
-    * @param Nodes the array with the nodes
-    * @param choise title of JFileChooser
-    */
-   public static void saveGraph(ArrayList<Edge> Edges, ArrayList<Node> Nodes, String choise) {
+   public static void saveGraph(ArrayList<Edge> Edges, ArrayList<Node> Nodes) {
       String ls = System.getProperty("line.separator");
       JFileChooser chooser = new JFileChooser();
-      FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
+      FileNameExtensionFilter filter = new FileNameExtensionFilter("Save file (*.graph)", "graph");
       chooser.setFileFilter(filter);
-      chooser.setDialogTitle(choise);
+      chooser.setDialogTitle("Save");
       chooser.setCurrentDirectory(new File("savedgraphs"));
       int returnVal = chooser.showDialog(null, "Save");
       if (returnVal == JFileChooser.APPROVE_OPTION) {
          File file = chooser.getSelectedFile();
          chooser.setCurrentDirectory(file);
-         try (PrintWriter w = new PrintWriter(new BufferedWriter(new FileWriter(extensionCheck(chooser.getCurrentDirectory() + File.separator + chooser.getSelectedFile().getName()), false)))) {
+         String filename = chooser.getCurrentDirectory() + File.separator + chooser.getSelectedFile().getName() + ".graph";
+         try (PrintWriter w = new PrintWriter(new BufferedWriter(new FileWriter(filename, false)))) {
             w.printf("%d %d %s", Nodes.size(), Edges.size(), ls);
             for (Node i : Nodes) {
-               w.printf("%d %d %d %d %s %s", i.getX(), i.getY(), i.getHeight(), i.getWidth(), i.name, ls);
+               w.printf("%d %d %d %d %s %s", (int)i.getX(), (int)i.getY(), (int)i.getHeight(), (int)i.getWidth(), i.getName(), ls);
             }
             for (Edge j : Edges) {
-               w.printf("%d %d %s", j.getNodeOne(), j.getNodeTwo(), ls);
+
+               w.printf("%d %d %s", Nodes.indexOf(j.getNodeOne()), Nodes.indexOf(j.getNodeTwo()), ls);
             }
             w.close();
             System.out.println("Save successful!");
@@ -69,17 +53,51 @@ public class Saveload {
    }
 
    /**
-    * Method that loads a state of the graph
-    * @param path the loading path
-    * @param cmdLoad True if the input file is given from terminal, false if not
+    * This method loads a state of the graph editor.
     *
+    * @param graph The GraphModel.
+    * @param path The loading path.
+    * @param cmdLoad True if the input file is given from terminal, false if not.
     */
-   public static void loadGraph(GraphModel graph,String path, boolean cmdLoad) {
+   public static void loadGraph(GraphModel graph, String path, boolean cmdLoad) {
       int nodes, edges;
+      try {
+         Scanner scanner = new Scanner(loadPath(path, cmdLoad));
+         nodes = scanner.nextInt();
+         edges = scanner.nextInt();
+         for (int i = 0; i < nodes; i++) {
+            int x = scanner.nextInt();
+            int y = scanner.nextInt();
+            int height = scanner.nextInt();
+            int width = scanner.nextInt();
+            String name = scanner.next();
+            Node newNode = new Node(name, x, y, width, height);
+            graph.addNode(newNode);
+         }
+         for (int j = 0; j < edges; j++) {
+            int nodeOne = scanner.nextInt();
+            Node one = graph.getNode(nodeOne);
+            int nodeTwo = scanner.nextInt();
+            Node two = graph.getNode(nodeTwo);
+            Edge edge = new Edge(one, two);
+            graph.addEdge(edge);
+         }
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+   }
+
+   /**
+    * This method creates the loading path, depending on the input.
+    *
+    * @param path The loading path.
+    * @param cmdLoad True if the input file is given from terminal, false if not.
+    */
+   public static File loadPath(String path, boolean cmdLoad) {
       File file = null;
       if (!cmdLoad) {
          JFileChooser chooser = new JFileChooser();
-         FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
+         FileNameExtensionFilter filter = new FileNameExtensionFilter("Save file (*.graph)", "graph");
          chooser.setFileFilter(filter);
          chooser.setDialogTitle("Load");
          chooser.setCurrentDirectory(new File("savedgraphs"));
@@ -90,27 +108,6 @@ public class Saveload {
       } else {
          file = new File(path);
       }
-            try {
-               Scanner scanner = new Scanner(file);
-               nodes = scanner.nextInt();
-               edges = scanner.nextInt();
-               for (int i = 0; i < nodes; i++) {
-                  int x = scanner.nextInt();
-                  int y = scanner.nextInt();
-                  int height = scanner.nextInt();
-                  int width = scanner.nextInt();
-                  String name = scanner.next();
-                  graph.addNode(name, x, y, height, width);
-               }
-               for (int j = 0; j < edges; j++) {
-                  int nodeOne = scanner.nextInt();
-                  int nodeTwo = scanner.nextInt();
-                  graph.addEdge(nodeOne, nodeTwo);
-               }
-            } catch (IOException e) {
-               e.printStackTrace();
-            }
-
-      }
-
+      return file;
+   }
 }

@@ -1,54 +1,35 @@
 package nl.rug.oop.grapheditor.model;
 
-import java.util.Observable;
+import java.awt.*;
 
 /**
  * Node class.
  */
-public class Node extends Observable {
-   public String name;
-   private int x;
-   private int y;
-   private int width;
-   private int height;
+public class Node extends Rectangle{
+   private String name;
+   private boolean isSelected;
 
    /**
     * Constructor
     */
    public Node(String name, int x, int y, int width, int height) {
-      this.x = x;
-      this.y = y;
-      this.width= width;
-      this.height = height;
+      super(x, y, width, height);
       this.name = name;
+      isSelected = false;
    }
 
-   /**
-    * Getter for X coordinate
-    */
-   public int getX() {
-      return x;
+   public Node() {
+      super( 100,100,200,100);
+      this.name = "Node";
+      isSelected = false;
    }
 
-   /**
-    * Getter for Y coordinate
-    */
-   public int getY() {
-      return y;
+   public void setSelected(boolean b) {
+      isSelected = b;
    }
 
-   /**
-    * Getter for height
-    */
-   public int getHeight() {
-      return height;
-   }
-
-   /**
-    * Getter for width
-    */
-   public int getWidth() {
-      return width;
+   public boolean isSelected() {
+      return isSelected;
    }
 
    /**
@@ -69,7 +50,25 @@ public class Node extends Observable {
       this.y = y;
    }
 
-   public void setName(String name) {
-      this.name = name;
+   public void rename(String name) {
+      if(name != null)
+         this.name = name;
    }
+
+   public Point getCenter() {
+      return new Point(x + (width / 2), y + (height / 2));
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public Rectangle getNodeArea() {
+      return this;
+   }
+
+   public Point getCoordinates() {
+      return new Point(x, y);
+   }
+
 }

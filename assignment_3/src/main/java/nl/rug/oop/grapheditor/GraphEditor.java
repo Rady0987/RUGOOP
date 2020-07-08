@@ -5,16 +5,18 @@ import nl.rug.oop.grapheditor.view.*;
 import static nl.rug.oop.grapheditor.model.IO.Saveload.loadGraph;
 
 /**
- * GraphEditor class.
+ * This class creates the Graph Editor.
  */
 public class GraphEditor {
+
    /**
-    * Main method
+    * This is the main method.
     */
    public static void main(String[] args) {
       GraphModel model = new GraphModel();
-      if (args.length == 3 && args[0].equals("java") && args[1].equals("GraphEditor")) {
-         String file = args[2];
+      /* If in the command-line there is only one argument (the path), the program will load it */
+      if (args.length == 1) {
+         String file = args[0];
          loadGraph(model, file, true);
       }
       /* Create the frame */
