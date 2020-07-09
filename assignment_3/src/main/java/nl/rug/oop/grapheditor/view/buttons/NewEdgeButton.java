@@ -28,6 +28,5 @@ public class NewEdgeButton extends JButton{
       setHorizontalTextPosition(AbstractButton.CENTER);
       setMnemonic(KeyEvent.VK_S);
       setToolTipText("Select the first node, then press this button");
-
    }
 }

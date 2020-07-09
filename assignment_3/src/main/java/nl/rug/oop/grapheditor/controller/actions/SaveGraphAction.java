@@ -4,14 +4,16 @@ import nl.rug.oop.grapheditor.model.GraphModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * This class creates a new action that saves a graph.
+ */
 public class SaveGraphAction extends AbstractAction {
    private final GraphModel graph;
 
    /**
-    * Constructor.
-    * Creates an action to make a new edge
+    * The Constructor.
     *
-    * @param graph GraphModel
+    * @param graph The GraphModel.
     */
    public SaveGraphAction(GraphModel graph) {
       super("New Graph");
@@ -19,9 +21,9 @@ public class SaveGraphAction extends AbstractAction {
    }
 
    /**
-    * Calls the corresponding method from model
+    * This method calls the corresponding method from model.
     *
-    * @param e ActionEvent that is raised from the user action
+    * @param e ActionEvent that is raised from the user action.
     */
    @Override
    public void actionPerformed(ActionEvent e) {

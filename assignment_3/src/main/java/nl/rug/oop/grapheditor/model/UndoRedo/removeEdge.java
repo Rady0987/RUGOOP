@@ -1,4 +1,4 @@
-package nl.rug.oop.grapheditor.controller.UndoRedo;
+package nl.rug.oop.grapheditor.model.UndoRedo;
 
 import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;

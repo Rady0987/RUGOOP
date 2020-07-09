@@ -9,7 +9,7 @@ import java.awt.event.WindowEvent;
  * This class creates a new window controller of the graph editor frame.
  */
 public class WindowController extends WindowAdapter {
-   private GraphModel graph;
+   private final GraphModel graph;
 
    /**
     * Constructor.
@@ -28,8 +28,10 @@ public class WindowController extends WindowAdapter {
    @Override
    public void windowClosing(WindowEvent event) {
       String message = "Would you like to save the graph before exiting?";
-      Warning saveWarning = new Warning(message, graph);
-      saveWarning.saveWarning();
+      if(graph.isGraphBlank()) {
+         Warning saveWarning = new Warning(message, graph);
+         saveWarning.saveWarning();
+      }
       System.exit(0);
    }
 }

@@ -39,6 +39,12 @@ public class GraphModel extends Observable  {
       update();
    }
 
+   /**
+    * This method removes an edge.
+    *
+    * @param edge The first edge itself.
+    *
+    */
    public void removeEdge(Edge edge) {
       Edges.remove(edge);
       setSelectedNodeNull();
@@ -212,9 +218,7 @@ public class GraphModel extends Observable  {
     * This method undoes an action and updates the state of the model.
     */
    public void undo() {
-      if (undoManager.canUndo()) {
          undoManager.undo();
-      }
       update();
    }
 
@@ -237,5 +241,22 @@ public class GraphModel extends Observable  {
    public void renameNode(Node node, String name) {
       node.rename(name);
       update();
+   }
+
+   /**
+    * This method returns true if two selected nodes are connected.
+    *
+    * @return A boolean value.
+    */
+   public boolean selectedNodesConnected() {
+      for(Edge edge : Edges) {
+         if (edge.isConnectedTo(selectedNodes.get(0)) && edge.isConnectedTo(selectedNodes.get(1)))
+            return true;
+      }
+      return false;
+   }
+
+   public boolean isGraphBlank(){
+      return Edges.size() != 0 || Nodes.size() != 0;
    }
 }

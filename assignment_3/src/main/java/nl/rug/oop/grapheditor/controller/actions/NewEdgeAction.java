@@ -3,7 +3,7 @@ package nl.rug.oop.grapheditor.controller.actions;
 import nl.rug.oop.grapheditor.controller.SelectionController;
 import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.controller.UndoRedo.addEdge;
+import nl.rug.oop.grapheditor.model.UndoRedo.addEdge;
 
 import javax.swing.*;
 import javax.swing.undo.UndoManager;
@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
  */
 public class NewEdgeAction extends AbstractAction {
 
-   private GraphModel graph;
+   private final GraphModel graph;
 
    /**
     * The Constructor.

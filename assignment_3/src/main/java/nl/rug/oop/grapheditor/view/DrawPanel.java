@@ -14,29 +14,27 @@ import java.util.Observable;
  * This class creates a new panel, part of the graph editor view.
  */
 public class DrawPanel extends JPanel implements Observer {
-
-    private int startWidth = 1300;
-    private int startHeight = 900;
-    private GraphModel graph;
+    private final GraphModel graph;
     private Point mouse;
+    private Color edgeColor = Color.blue;
 
     /**
-     * Constructor
+     * The Constructor.
      *
      * @param graph The GraphModel.
      */
     public DrawPanel(GraphModel graph) {
         this.graph = graph;
         graph.addObserver(this);
-        setBackground(Color.darkGray);
+        setBackground(Color.white);
         setVisible(true);
         setOpaque(true);
     }
 
     /**
-     * Method that paints the nodes
+     * This method paints the nodes.
      *
-     * @param g Graphics component
+     * @param g Graphics component.
      */
     private void paintNodes(Graphics g) {
         for(Node node : graph.getNodeList()){
@@ -55,12 +53,12 @@ public class DrawPanel extends JPanel implements Observer {
     }
 
     /**
-     * Method that paints the edges
+     * This method paints the edges.
      *
-     * @param g Graphics component
+     * @param g Graphics component.
      */
     private void paintEdges(Graphics g) {
-        g.setColor(Color.lightGray);
+        g.setColor(edgeColor);
         for(Edge edge : graph.getEdgeList()){
             Point startNode = edge.getNodeOne().getCenter();
             Point endNode = edge.getNodeTwo().getCenter();
@@ -69,9 +67,9 @@ public class DrawPanel extends JPanel implements Observer {
     }
 
     /**
-     * Method that paints a new created edge
+     * This method paints a new created edge.
      *
-     * @param g Graphics component
+     * @param g Graphics component.
      */
     public void paintAddingEdge(Graphics g) {
         if (graph.getSelectedNodes().size() != 0 && SelectionController.isNewEdgePressed()) {
@@ -85,9 +83,29 @@ public class DrawPanel extends JPanel implements Observer {
     }
 
     /**
-     * Paint the items that this class alone is responsible for.
-     * <p>
-     * This method is part of a template method that calls
+     * This method change the color of the background and edges.
+     *
+     */
+    public void darkMode() {
+        this.setBackground(Color.darkGray);
+        edgeColor = Color.RED;
+        repaint();
+    }
+
+    /**
+     * This method change the color of the background and edges to default one.
+     *
+     */
+    public void defaultMode() {
+        this.setBackground(Color.white);
+        edgeColor = Color.blue;
+        repaint();
+    }
+
+    /**
+     * This method paints the items that this class alone is responsible for.
+     *
+     * @param g Graphics component.
      */
     @Override
     public void paintComponent(Graphics g) {
@@ -98,7 +116,10 @@ public class DrawPanel extends JPanel implements Observer {
     }
 
     /**
-     * Tell this DrawPanel that the object it displays has changed
+     * This method updates the state of the panel.
+     *
+     * @param observed The source of the update call.
+     * @param message Argument.
      */
     @Override
     public void update(Observable observed, Object message) {
@@ -106,19 +127,10 @@ public class DrawPanel extends JPanel implements Observer {
     }
 
     /**
-     * Getter for the X coordonate in terms of the screen ratio
+     * This method updates the position of the cursor.
+     *
+     * @param position The point where the cursor is located.
      */
-    public double getRatioX(){
-        return (double)getWidth()/startWidth;
-    }
-
-    /**
-     * Getter for the Y coordonate in terms of the screen ratio
-     */
-    public double getRatioY(){
-        return (double)getHeight()/startHeight;
-    }
-
     public void setMousePosition(Point position) {
         mouse = position;
     }

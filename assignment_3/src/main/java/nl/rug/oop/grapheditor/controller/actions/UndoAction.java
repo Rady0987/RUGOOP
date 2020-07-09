@@ -5,14 +5,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 /**
- * Class that creates a new Undo action.
+ * This class creates a new Undo action.
  */
 public class UndoAction extends AbstractAction {
-   private GraphModel graph;
+   private final GraphModel graph;
    /**
-    * Constructor.
+    * The Constructor.
     *
-    * @param graph GraphModel
+    * @param graph The GraphModel.
     */
    public UndoAction(GraphModel graph) {
       super("Undo");

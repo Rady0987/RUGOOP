@@ -17,7 +17,6 @@ import java.awt.event.MouseEvent;
 public class SelectionController extends MouseInputAdapter {
 
     private static GraphModel graph;
-    private static Edge addedEdge;
     private final DrawPanel panel;
     private static Node selectedNode;
     private static boolean newEdge = false;
@@ -33,7 +32,7 @@ public class SelectionController extends MouseInputAdapter {
      * @param panel The JPanel, needed to receive mouse events from.
      */
     public SelectionController(GraphModel graph, DrawPanel panel) {
-        this.graph = graph;
+        SelectionController.graph = graph;
         this.panel = panel;
         panel.addMouseListener(this);
         panel.addMouseMotionListener(this);
@@ -55,7 +54,7 @@ public class SelectionController extends MouseInputAdapter {
             }
             /* If the newEdge button is clicked, this boolean becomes true and the new edge is added */
             if(newEdge) {
-                addedEdge = new Edge(checkForNode(event.getPoint()), graph.getSelectedNodes().get(0));
+                Edge addedEdge = new Edge(checkForNode(event.getPoint()), graph.getSelectedNodes().get(0));
                 NewEdgeAction action = new NewEdgeAction(graph);
                 action.createEdit(addedEdge);
                 graph.setSelectedNodeNull();

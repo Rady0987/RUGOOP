@@ -1,7 +1,7 @@
 package nl.rug.oop.grapheditor.controller.actions;
 
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.controller.UndoRedo.renameNode;
+import nl.rug.oop.grapheditor.model.UndoRedo.renameNode;
 
 import javax.swing.*;
 import javax.swing.undo.UndoManager;
@@ -24,7 +24,7 @@ public class RenameNodeAction extends AbstractAction {
    }
 
    /**
-    * Calls the corresponding method from undoable .
+    * This method calls the corresponding method from model.
     *
     * @param e ActionEvent that is raised from the user action.
     */

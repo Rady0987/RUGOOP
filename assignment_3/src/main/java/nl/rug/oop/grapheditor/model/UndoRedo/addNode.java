@@ -1,27 +1,24 @@
-package nl.rug.oop.grapheditor.controller.UndoRedo;
+package nl.rug.oop.grapheditor.model.UndoRedo;
 
-import nl.rug.oop.grapheditor.model.Edge;
 import nl.rug.oop.grapheditor.model.GraphModel;
-
+import nl.rug.oop.grapheditor.model.Node;
 import javax.swing.undo.AbstractUndoableEdit;
 
 /**
- * Class that creates a new undoable action to add an edge.
+ * Class that creates a new undoable action to add a node.
  */
-public class addEdge extends AbstractUndoableEdit{
+public class addNode extends AbstractUndoableEdit{
    private final GraphModel graph;
-   private final Edge edge;
+   private Node node;
 
    /**
     * The constructor.
     *
-    * @param graph The graph model.
-    * @param edge The edge that is added.
+    * @param graph The graph model
     *
     */
-   public addEdge(GraphModel graph, Edge edge) {
+   public addNode(GraphModel graph) {
       this.graph = graph;
-      this.edge = edge;
    }
 
    /**
@@ -30,7 +27,7 @@ public class addEdge extends AbstractUndoableEdit{
    @Override
    public void undo() {
       super.undo();
-      graph.removeEdge(edge);
+      graph.removeNode(node);
    }
 
    /**
@@ -41,6 +38,7 @@ public class addEdge extends AbstractUndoableEdit{
       if (super.canRedo()) {
          super.redo();
       }
-      graph.addEdge(edge);
+      node = new Node();
+      graph.addNode(node);
    }
 }

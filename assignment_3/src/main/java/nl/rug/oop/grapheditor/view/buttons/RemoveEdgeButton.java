@@ -27,8 +27,6 @@ public class RemoveEdgeButton extends JButton {
       setVerticalTextPosition(AbstractButton.CENTER);
       setHorizontalTextPosition(AbstractButton.CENTER);
       setMnemonic(KeyEvent.VK_S);
-      setToolTipText("Select a node first, click this button and select the second node that is connected by the edge you want to delete");
+      setToolTipText("Select the two nodes that are connected by the edge you want to delete");
    }
-
-
 }

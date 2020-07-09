@@ -2,7 +2,7 @@ package nl.rug.oop.grapheditor.controller.actions;
 
 import nl.rug.oop.grapheditor.model.GraphModel;
 import nl.rug.oop.grapheditor.model.Node;
-import nl.rug.oop.grapheditor.controller.UndoRedo.moveNode;
+import nl.rug.oop.grapheditor.model.UndoRedo.moveNode;
 import javax.swing.undo.UndoManager;
 import java.awt.*;
 
@@ -31,7 +31,7 @@ public class MoveNodeAction {
     */
    public void actionPerformed() {
       UndoManager undoManager = graph.getUndoManager();
-      moveNode moveNodeEdit = new moveNode(graph, node, oldCoordinates, node.getCoordinates());
+      moveNode moveNodeEdit = new moveNode(node, oldCoordinates, node.getCoordinates());
       undoManager.addEdit(moveNodeEdit);
       moveNodeEdit.redo();
    }

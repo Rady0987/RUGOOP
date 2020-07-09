@@ -1,7 +1,7 @@
 package nl.rug.oop.grapheditor.controller.actions;
 
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.controller.UndoRedo.removeEdge;
+import nl.rug.oop.grapheditor.model.UndoRedo.removeEdge;
 
 import javax.swing.*;
 import javax.swing.undo.UndoManager;

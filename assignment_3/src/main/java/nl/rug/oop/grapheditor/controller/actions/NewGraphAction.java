@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
  */
 public class NewGraphAction extends AbstractAction {
 
-   private GraphModel graph;
+   private final GraphModel graph;
 
    /**
     * The Constructor.
@@ -31,8 +31,10 @@ public class NewGraphAction extends AbstractAction {
    @Override
    public void actionPerformed(ActionEvent e) {
       String message = "Would you like to save the graph before creating a new one?";
-      Warning saveWarning = new Warning(message, graph);
-      saveWarning.saveWarning();
+      if(graph.isGraphBlank()) {
+         Warning saveWarning = new Warning(message, graph);
+         saveWarning.saveWarning();
+      }
       graph.newGraph();
    }
 }

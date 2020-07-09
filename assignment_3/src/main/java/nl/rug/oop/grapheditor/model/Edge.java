@@ -1,27 +1,25 @@
 package nl.rug.oop.grapheditor.model;
 
 /**
- * Edge class
+ * This class creates a new edge.
  */
 public class Edge {
-   private Node nodeOne;
-   private Node nodeTwo;
-   private boolean isSelected;
+   private final Node nodeOne;
+   private final Node nodeTwo;
 
    /**
-    * Constructor
+    * The Constructor.
     *
-    * @param nodeOne the first node connected
-    * @param nodeTwo the second node connected
+    * @param nodeOne The first node connected.
+    * @param nodeTwo The second node connected.
     */
    public Edge(Node nodeOne, Node nodeTwo) {
       this.nodeOne = nodeOne;
       this.nodeTwo = nodeTwo;
-      isSelected = false;
    }
 
    /**
-    * Getter for the node one
+    * This method gets the first node.
     *
     * @return nodeOne the first node
     */
@@ -30,18 +28,30 @@ public class Edge {
    }
 
    /**
-    * Getter for the node two
+    * This method gets the second node.
     *
-    * @return  nodeTwo the second node
+    * @return nodeOne the second node
     */
    public Node getNodeTwo() {
       return nodeTwo;
    }
 
+   /**
+    * This method returns true if an edge is connected to a node.
+    *
+    * @param node The node.
+    * @return A boolean value.
+    */
    public boolean isConnectedTo(Node node) {
       return (nodeOne == node || nodeTwo == node);
    }
 
+   /**
+    * This method returns true if an edge is the same as an existing one.
+    *
+    * @param edge The edge.
+    * @return A boolean value.
+    */
    public boolean sameEdges(Edge edge) {
       return((this.nodeOne == edge.nodeOne && this.nodeTwo == edge.nodeTwo) ||
               (this.nodeTwo == edge.nodeOne && this.nodeOne == edge.nodeTwo));

@@ -32,7 +32,4 @@ public class NewNodeButton extends JButton {
         setMnemonic(KeyEvent.VK_S);
         setToolTipText("Adds a node");
     }
-
-
-
 }

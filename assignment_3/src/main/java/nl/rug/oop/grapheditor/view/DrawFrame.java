@@ -25,12 +25,12 @@ public class DrawFrame extends JFrame implements Observer {
         super("Graph Editor ");
         /* Make sure our program exits and asks for saving when we close the frame */
         addWindowListener(new WindowController(graph));
-        /* Add a menu bar to the frame */
-        ButtonMenuBar menuBar = new ButtonMenuBar(graph);
-        graph.addObserver(menuBar);
-        setJMenuBar(menuBar);
         /* Add a panel to the frame */
         DrawPanel panel = new DrawPanel(graph);
+        /* Add a menu bar to the frame */
+        ButtonMenuBar menuBar = new ButtonMenuBar(graph, panel);
+        graph.addObserver(menuBar);
+        setJMenuBar(menuBar);
         /* Add a button bar to the panel */
         ButtonBar bar = new ButtonBar(graph, panel);
         add(bar, BorderLayout.NORTH);
@@ -53,7 +53,7 @@ public class DrawFrame extends JFrame implements Observer {
     /**
      * This method updates the state of the frame.
      * @param o The source of the update call.
-     * @param arg
+     * @param arg Argument.
      */
     @Override
     public void update(Observable o, Object arg) {

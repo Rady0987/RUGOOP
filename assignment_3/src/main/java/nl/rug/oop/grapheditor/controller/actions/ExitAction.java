@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
  * This class creates an Exit action.
  */
 public class ExitAction extends AbstractAction {
-   private GraphModel graph;
+   private final GraphModel graph;
 
    /**
     * Constructor.
@@ -30,8 +30,10 @@ public class ExitAction extends AbstractAction {
    @Override
    public void actionPerformed(ActionEvent e) {
       String message = "Would you like to save the graph before exiting?";
-      Warning saveWarning = new Warning(message, graph);
-      saveWarning.saveWarning();
+      if(graph.isGraphBlank()) {
+         Warning saveWarning = new Warning(message, graph);
+         saveWarning.saveWarning();
+      }
       System.exit(0);
    }
 }

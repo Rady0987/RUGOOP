@@ -61,29 +61,32 @@ public class Saveload {
     */
    public static void loadGraph(GraphModel graph, String path, boolean cmdLoad) {
       int nodes, edges;
-      try {
-         Scanner scanner = new Scanner(loadPath(path, cmdLoad));
-         nodes = scanner.nextInt();
-         edges = scanner.nextInt();
-         for (int i = 0; i < nodes; i++) {
-            int x = scanner.nextInt();
-            int y = scanner.nextInt();
-            int height = scanner.nextInt();
-            int width = scanner.nextInt();
-            String name = scanner.next();
-            Node newNode = new Node(name, x, y, width, height);
-            graph.addNode(newNode);
+      File filePath = loadPath(path, cmdLoad);
+      if(filePath != null) {
+         try {
+            Scanner scanner = new Scanner(filePath);
+            nodes = scanner.nextInt();
+            edges = scanner.nextInt();
+            for (int i = 0; i < nodes; i++) {
+               int x = scanner.nextInt();
+               int y = scanner.nextInt();
+               int height = scanner.nextInt();
+               int width = scanner.nextInt();
+               String name = scanner.next();
+               Node newNode = new Node(name, x, y, width, height);
+               graph.addNode(newNode);
+            }
+            for (int j = 0; j < edges; j++) {
+               int nodeOne = scanner.nextInt();
+               Node one = graph.getNode(nodeOne);
+               int nodeTwo = scanner.nextInt();
+               Node two = graph.getNode(nodeTwo);
+               Edge edge = new Edge(one, two);
+               graph.addEdge(edge);
+            }
+         } catch (IOException e) {
+            e.printStackTrace();
          }
-         for (int j = 0; j < edges; j++) {
-            int nodeOne = scanner.nextInt();
-            Node one = graph.getNode(nodeOne);
-            int nodeTwo = scanner.nextInt();
-            Node two = graph.getNode(nodeTwo);
-            Edge edge = new Edge(one, two);
-            graph.addEdge(edge);
-         }
-      } catch (IOException e) {
-         e.printStackTrace();
       }
    }
 

@@ -1,10 +1,6 @@
 package nl.rug.oop.grapheditor.view.buttons;
 
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.view.buttons.NewEdgeButton;
-import nl.rug.oop.grapheditor.view.buttons.NewNodeButton;
-import nl.rug.oop.grapheditor.view.buttons.RemoveEdgeButton;
-import nl.rug.oop.grapheditor.view.buttons.RemoveNodeButton;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
@@ -46,7 +42,7 @@ public class ButtonBar extends JPanel implements Observer {
     */
    public void updateState() {
       removeNode.setEnabled(graph.getSelectedNodes().size() != 0);
-      removeEdge.setEnabled(graph.getEdgeList().size() > 0 && graph.getSelectedNodes().size() == 2);
+      removeEdge.setEnabled(graph.getEdgeList().size() > 0 && graph.getSelectedNodes().size() == 2 && graph.selectedNodesConnected());
       newEdge.setEnabled(graph.getSelectedNodes().size() == 1 && graph.getNodeList().size() >= 2);
    }
 

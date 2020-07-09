@@ -29,5 +29,4 @@ public class RemoveNodeButton extends JButton{
       setMnemonic(KeyEvent.VK_S);
       setToolTipText("Select the node you want to remove, then click this button");
    }
-
 }

@@ -1,7 +1,7 @@
 package nl.rug.oop.grapheditor.controller.actions;
 
 import nl.rug.oop.grapheditor.model.GraphModel;
-import nl.rug.oop.grapheditor.controller.UndoRedo.addNode;
+import nl.rug.oop.grapheditor.model.UndoRedo.addNode;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
@@ -12,7 +12,7 @@ import javax.swing.undo.UndoManager;
  */
 public class NewNodeAction extends AbstractAction {
 
-    private GraphModel graph;
+    private final GraphModel graph;
 
     /**
      * The Constructor.

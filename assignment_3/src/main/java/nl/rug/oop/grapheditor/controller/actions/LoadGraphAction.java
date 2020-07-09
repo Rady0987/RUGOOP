@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
  * This class creates a load graph action.
  */
 public class LoadGraphAction extends AbstractAction {
-   private GraphModel graph;
+   private final GraphModel graph;
 
    /**
     * The constructor.
@@ -29,9 +29,11 @@ public class LoadGraphAction extends AbstractAction {
     */
    @Override
    public void actionPerformed(ActionEvent e) {
-      String message = "Would you like to save the graph before loading?";
-      Warning saveWarning = new Warning(message, graph);
-      saveWarning.saveWarning();
+      String message = "Would you like to save the current graph before loading?";
+      if(graph.isGraphBlank()) {
+         Warning saveWarning = new Warning(message, graph);
+         saveWarning.saveWarning();
+      }
       graph.loadGraph();
    }
 }
